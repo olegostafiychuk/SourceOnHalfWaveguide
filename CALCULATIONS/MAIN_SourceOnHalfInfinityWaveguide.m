@@ -15,7 +15,7 @@ typeOfCylinder = 'Gyrotropic';
 rho = [0.12:0.01:5] * 1*a_0;
 
 
-%%%%%%%%%%%%%% propagation constants of eigenwaves %%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%% propagation constants of eigenwaves as %%%%%%%%%%%%%%%%%%%%%%%%
 if(strcmp(typeOfCylinder, 'Isotropic'))
     p_n__of_descreteMode_of_isotropicCyl
 elseif(strcmp(typeOfCylinder, 'Gyrotropic'))
