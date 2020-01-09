@@ -9,6 +9,13 @@
 %% Add packages and define personal macros here, but ensure that they do not
 %% interfere with the fonts and page layout. Do not add hyperlinks.
 
+%additional defs
+%\def\f{\phi}
+\def\op{\omega_{\rm p}}
+\def\oH{\omega_{\rm H}}
+\def\OH{\Omega_{\rm H}}
+\def\Op{\Omega_{\rm p}}
+
 \title{Excitation of Electromagnetic Waves by a Nonsymmetric Antenna Located On the Surface of a Semi-Infinite Gyrotropic Cylinder}
 
 %% Use \affref{nn} and matching \aff{nn}{...} below for several authors
@@ -76,6 +83,35 @@ The investigation of the excited field and fields of waves scattered by the end-
 
 
 \section{Formulation of the Problem}
+Let us consider a semi-infinite cylinder of radius $ a $ located in free space and filled with a cold collisionless magnetoplasma.
+The cylinder axis is parallel to an external static magnetic field $ \textbf{B}_{0} $ and coincides with the $ z $ axis of the cylindrical coordinate system ($ \rho, \phi, z $).
+The endface of the cylinder lies in the plane $ z=0 $.
+The plasma inside the cylinder is described by dielectric permittivity tensor which has the following form for a monochromatic signal:
+\begin{equation} \label{eq1}
+\hat{\varepsilon}=\epsilon_{0}\!\!
+\left(
+\begin{array}{ccc}
+\varepsilon & -ig & 0 \\
+ig & \varepsilon & 0 \\
+0 & 0 & \eta
+\end{array}
+\right).
+\end{equation}
+Here, $ \epsilon_{0} $ is the permittivity of free space, and the quantities $\varepsilon$, $g$, and $\eta$ for a cold collisionless magnetoplasma can be written as
+\begin{align} \label{eq2}
+\varepsilon &=\!1+\frac{\op^2}{\oH^2-\omega^2}+\frac{\Op^2}{\OH^2-\omega^2}, \nonumber \\
+g&=-\frac{\op^2\oH}{(\oH^2-\omega^2)\omega}+\frac{\Op^2\OH}{(\OH^2-\omega^2)\omega}, \\
+\eta&=1-\frac{\op^2}{\omega^2}-\frac{\Op^2}{\omega^2}. \nonumber
+\end{align}
+In (\ref{eq2}) we used standard notations  $ \op $ and $ \Op $ for the electron and ion plasma frequencies, and $ \oH $ and $ \OH $ for the gyrofrequencies of the corresponding particles, respectively.
+The source is represented as an electric current specified on the side surface of the cylinder with density written, with the $ \exp(i\omega t) $ time dependence dropped, as
+\begin{align} \label{eq3}
+{\bf J}({\bf r})=&\,({\pmb\phi}_{0}j_{\phi}+{\bf z}_0j_z)\delta(\rho-a) \nonumber \\
+&\times\exp\left(-im\phi-ik_0{\tilde p}z\right),\\
+&-L-d<z<-L+d. \nonumber
+\end{align} 
+Here, $ d $ is the half-length of the antenna, $ L $ characterizes the distance between the antenna and the endface of the cylinder, integer $ m $ and the constant $ \tilde p $ determine the dependence of the current on the azimuthal and longitudinal coordinates, respectively, and $ k_0=\omega/c $ is the wave number in free space ($ c $  is the speed of light in free space).
+The total amplitude of the current can be found as  $ |I_0|^2=|I_\phi|^2+|I_z|^2 $, where $ I_\phi=2dj_{\phi} $ and $ I_z=2\pi aj_z $. 
 
 %The paper should include an abstract and the usual subsections and should
 %be in English.
