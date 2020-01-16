@@ -1,4 +1,4 @@
-clear all
+clearvars
 % clc
 
 tic
@@ -24,8 +24,8 @@ end
 q_n = sqrt(1-p_n.^2);
 q_n = q_n.* (2*(imag(q_n) <= 0)-1);
 
-upper_Bound = 32000;
-% upper_Bound = 16000;
+% upper_Bound = 32000;
+upper_Bound = 16000;
 % upper_Bound = 8000;
 N = 1600;
 
@@ -64,9 +64,15 @@ interalQ = q_cs > 0.99;
 a_cs_alfa1_forw(interalQ) = 0*a_cs_alfa1_forw(interalQ);
 a_cs_alfa2_forw(interalQ) = 0*a_cs_alfa2_forw(interalQ);
 
+a_cs_alfa1_back(interalQ) = 0*a_cs_alfa1_back(interalQ);
+a_cs_alfa2_back(interalQ) = 0*a_cs_alfa2_back(interalQ);
+
 % a_cs_alfa1_forw(1) = 1;
 a_cs_alfa1_forw(isnan(a_cs_alfa1_forw)) = isnan(a_cs_alfa1_forw(isnan(a_cs_alfa1_forw))) * 0;
 a_cs_alfa2_forw(isnan(a_cs_alfa2_forw)) = isnan(a_cs_alfa2_forw(isnan(a_cs_alfa2_forw))) * 0;
+
+a_cs_alfa1_back(isnan(a_cs_alfa1_back)) = isnan(a_cs_alfa1_back(isnan(a_cs_alfa1_back))) * 0;
+a_cs_alfa2_back(isnan(a_cs_alfa2_back)) = isnan(a_cs_alfa2_back(isnan(a_cs_alfa2_back))) * 0;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -97,6 +103,7 @@ end
 Expk0pcsL = exp(1i * k_0 * p_cs * L);
 a_cs_alfa1_forw_Exp = a_cs_alfa1_forw.* exp(1i * k_0 * p_cs * L);
 a_cs_alfa2_forw_Exp = a_cs_alfa2_forw.* exp(1i * k_0 * p_cs * L);
+
 for ir = 1:size(rho,2)
     Ez_forwardExcitedWave(ir) = Ez_forwardExcitedWave(ir) +...
           (k_0/2/pi) * sum(dq_simp.* field__ContinuesWaves_discreteRepr('Ez', typeOfCylinder, rho(ir), z, q_cs, p_cs,...
@@ -142,15 +149,63 @@ continuousSperctrumCharacters.q = q_cs;
 continuousSperctrumCharacters.p = p_cs;
 continuousSperctrumCharacters.a_cs_alfa1_forw = a_cs_alfa1_forw;
 continuousSperctrumCharacters.a_cs_alfa2_forw = a_cs_alfa2_forw;
+continuousSperctrumCharacters.a_cs_alfa1_back = a_cs_alfa1_back;
+continuousSperctrumCharacters.a_cs_alfa2_back = a_cs_alfa2_back;
 
 discreteSperctrumCharacters.q_n = q_n;
 discreteSperctrumCharacters.p_n = p_n;
 discreteSperctrumCharacters.a_smn_forw = a_smn_forw;
+discreteSperctrumCharacters.a_smn_back = a_smn_back;
 
 [b_p_field_1_back, b_p_field_2_back, b_n_back, a_p_Ebeam_forw,a_p_Hbeam_forw] =...           
           scatteringCoeffs_of_EigenWavesOfHalfInfinityGyrotropCylEdge(typeOfCylinder,...
                continuousSperctrumCharacters, discreteSperctrumCharacters,waveguideParameters, sourceParameters);
 
+%% %%%%%% CALCULATING OF PARTIAL POWERS %%%%%%%%%%% added by Oleg
+%%%%%%%% Ostafiychuk 14.01.2020
+
+b_p_field_1_back(interalQ) = 0*b_p_field_1_back(interalQ);
+b_p_field_2_back(interalQ) = 0*b_p_field_2_back(interalQ);
+
+a_p_Ebeam_forw(interalQ) = 0*a_p_Ebeam_forw(interalQ);
+a_p_Hbeam_forw(interalQ) = 0*a_p_Hbeam_forw(interalQ);
+
+%%%%%%%% in negative direction of z-axis%%%%%%%%%%
+for in = 1:size(q_n,1)
+    P_n_minus(in) = P_of_discreteMode(typeOfCylinder, q_n(in), - p_n(in), k_0, a_0, ...
+                                                EE1, GG1, HH1, MU1, EE, MU, m, a_smn_back(in).*exp(1i * k_0 * p_n(in) * L) + b_n_back(in));
+end
+
+figure(2)
+bar(p_n, -P_n_minus);
+
+P_mod_minus = sum(P_n_minus)
+
+P_cs_minus_1 = ...
+    sum(dq_simp.*P_of_continuousWaves_alpha1(typeOfCylinder, q_cs, p_0, - p_cs, k_0, a_0, ...
+                                 EE1, GG1, HH1, MU1, EE, MU, c, m, z, j_f, j_z, d, a_cs_alfa1_back.* exp(1i * k_0 * p_cs * L) + b_p_field_1_back));
+
+P_cs_minus_2 = ...
+    sum(dq_simp.*P_of_continuousWaves_alpha2(typeOfCylinder, q_cs, p_0, - p_cs, k_0, a_0, ...
+                                 EE1, GG1, HH1, MU1, EE, MU, c, m, z, j_f, j_z, d, a_cs_alfa2_back.* exp(1i * k_0 * p_cs * L) + b_p_field_2_back));
+
+P_cs_minus = P_cs_minus_1 + P_cs_minus_2
+
+%%%%%%%% in half-space z>0%%%%%%%%%%
+
+%%% the norms of eigenwaves of free space %%%
+N_p1 = @(q, p) (-1)^(m+1) * c * p./ (k_0.^2 * q);
+N_p2 = @(q, p) (-1)^(m+2) * c * p./ (k_0.^2 * q);
+
+P_cs_plus_1 = 1/4.*sum(dq_simp.*abs(a_p_Ebeam_forw).^2.*N_p1(q_cs, p_cs));
+P_cs_plus_2 = 1/4*sum(dq_simp.*abs(a_p_Hbeam_forw).^2.*N_p2(q_cs, p_cs));
+                             
+P_cs_plus = P_cs_plus_1 + P_cs_plus_2   
+
+P_ratio = P_mod_minus/(P_cs_minus + P_cs_plus)
+
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%         
+          
 
 Ez_waveguidespace = Ez_forwardExcitedWave;
 Ephi_waveguidespace = Ephi_forwardExcitedWave;

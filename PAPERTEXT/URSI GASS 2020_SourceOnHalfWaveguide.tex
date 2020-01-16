@@ -59,7 +59,7 @@ Moreover, in most works consideration is limited to the excitation of only the d
 In the case of a nonsymmetric antenna located on the surface of an infinite plasma-filled cylindrical waveguide surrounded by free space, the full spectrum of excited waves has been taken into account for determining the energy characteristics \cite{OstafEskin_APRASC2019} and radiation patterns \cite{OstafEskin_ICEAA2019} of such a source.
 %Для правильного описания излучения необходимо учитывать конечность плазменного столба.
 
-In this work the energy and radiation characteristics of a nonsymmetric antenna located on the surface of a semi-infinite gyrotropic cylinder is considered.
+In this work the features of wave excitation by a nonsymmetric antenna located on the surface of a semi-infinite gyrotropic cylinder are considered.
 The investigation of the excited field and fields of waves scattered by the end-face of the cylinder is performed using an expansion of these fields over the set of eigenwaves of an infinite open gyrotropic waveguide \cite{EskinPIERS2017_meth} and free space.
 %An enhanced interest in rigorous solutions...
 
@@ -159,7 +159,7 @@ In half-space $ z<0 $, the field excited by the current (\ref{eq3}) is represent
 \end{align}
 The functions $ E_{z;s,m,n}(\rho) $ and $ H_{z;s,m,n}(\rho) $ describe the radial distributions of the fields of the eigenmodes (discrete-spectrum waves) with the radial index $ n $ and the longitudinal wave numbers $ p_{s,m,n} $ ($ p_{+,m,n}=-p_{-,m,n} $);
 the subscript $ \alpha $ corresponds to two kinds of the continuous-spectrum waves described by the functions $ E_{z;s,m,\alpha}(\rho,q) $ and $ H_{z;s,m,\alpha}(\rho,q) $.
-Detailed expressions for these fields, which constitute the complete set of eigenwaves of an open gyrotropic cylindrical waveguide, can be found in [].
+Detailed expressions for these fields, which constitute the complete set of eigenwaves of an open gyrotropic cylindrical waveguide, can be found in \cite{OstafEskin_ICEAA2019}.
 The quantities $ a_{s,m,n} $ and $ a_{s,m,\alpha}(q) $ are obtained using the well-known technique developed for finding the excitation coefficients of the modes of open waveguides \cite{Kondrat'ev1999} and are given by the formulas
 \begin{align}\label{eq5}
 a_{s,m,n}=&\frac{1}{N_{s,m,n}} \int{\bf J}({\bf r})\cdot{\bf E}^{({\rm T})}_{-s,-m,n}({\bf r})d{\bf r} \nonumber\\
@@ -189,7 +189,7 @@ The longitudinal components of the backscattered field, hereafter marked by the 
 {H}_{z;-,m,\beta}(\rho,q)
 \end{array}\!\!\!\right]\!\!e^{-i(m\f - k_0 p z)}{d}q,
 \end{align}
-where $ b_{m,n} $ and $ b_{m,\beta}(q) $ are the unknown expansion coefficients to be found.
+where $ b_{m,n} $ and $ b_{m,\beta}(q) $ are the unknown expansion coefficients to be found, and $ \beta $ is the same as $ \alpha $.
 %Note that the fields of the discrete- and continuous-spectrum waves satisfy the orthogonality relations
 The longitudinal components of the fields in half-space $ z>0 $ are expanded in terms of the continuous-spectrum waves of free space as
 \begin{align}\label{eq7}
@@ -213,7 +213,7 @@ where, $J_m$ is the Bessel function of the first kind of order $m$ and $\delta_{
 \alpha,\beta}$ is the Kronecker delta.
 
 Using the boundary conditions
-\begin{eqnarray}\label{eq9}
+\begin{eqnarray}\label{bound_cond}
 &&{E}^{(\rm rad)}_{\f}+{E}^{(\rm r)}_{\f}={E}^{(\rm sc)}_{\f},\quad {H}^{(\rm rad)}_{\f}+{H}^{(\rm r)}_{\f}={H}^{(\rm sc)}_{\f},\nonumber\\
 &&{E}^{(\rm rad)}_{\rho}+{E}^{(\rm r)}_{\rho}={E}^{(\rm sc)}_{\rho},\quad {H}^{(\rm rad)}_{\rho}+{H}^{(\rm r)}_{\rho}={H}^{(\rm sc)}_{\rho}
 \end{eqnarray}
@@ -221,15 +221,15 @@ for the tangential field components at plane $ z=0 $ and taking into account the
 \begin{align}
 c_{m,\gamma}(q)\tilde{N}_{+,m,\gamma}(q)&=\sum_{n}a_{+,m,n}K_{-,-m,\gamma}^{+,m,n}(q) \nonumber\\
 &\hspace{-23mm}+ \sum_{\alpha=1}^{2}\int_{0}^{\infty}\!\!\!a_{+,m,\alpha}(\tilde{q})K_{-,-m,\gamma}^{+,m,\alpha}(\tilde{q},q)d\tilde{q} \nonumber+\sum_{n}b_{m,n}K_{-,-m,\gamma}^{-,m,n}(q) \\
-&\hspace{-23mm}+\sum_{\beta=1}^{2}\int_{0}^{\infty}\!\!\!b_{+,m,\beta}(\tilde{q})K_{-,-m,\gamma}^{-,m,\beta}(\tilde{q},q)d\tilde{q}, \label{eq10} \\
-b_{m,\beta}(q)N_{-,m,\beta}(q)&=\sum_{\gamma=1}^{2}\int_{0}^{\infty}\!\!\!\!\!c_{m,\gamma}(\tilde{q})K_{+,-m,\beta}^{+,m,\gamma}(\tilde{q},q)d\tilde{q}, \label{eq11} \\
-b_{m,n}N_{-,m,n}&=\sum_{\gamma=1}^{2}\int_{0}^{\infty}\!\!\!c_{m,\gamma}K_{+,-m,n}^{+,m,\gamma} \label{eq12}.
+&\hspace{-23mm}+\sum_{\beta=1}^{2}\int_{0}^{\infty}\!\!\!b_{+,m,\beta}(\tilde{q})K_{-,-m,\gamma}^{-,m,\beta}(\tilde{q},q)d\tilde{q}, \label{int_eq1} \\
+b_{m,\beta}(q)N_{-,m,\beta}(q)&=\sum_{\gamma=1}^{2}\int_{0}^{\infty}\!\!\!\!\!c_{m,\gamma}(\tilde{q})K_{+,-m,\beta}^{+,m,\gamma}(\tilde{q},q)d\tilde{q}, \label{int_eq2} \\
+b_{m,n}N_{-,m,n}&=\sum_{\gamma=1}^{2}\int_{0}^{\infty}\!\!\!c_{m,\gamma}K_{+,-m,n}^{+,m,\gamma} \label{int_eq3}.
 \end{align}
-Here, the norm of the continuous-spectrum waves of free space is given by the expression
-\begin{equation}\label{eq13}
+The norm of the continuous-spectrum waves of free space in \eqref{int_eq1} is given by the expression
+\begin{equation}\label{norm_free_space}
 \hspace{-7mm} {\tilde N}_{s,m,{\alpha}}({q})=(-1)^{m+\alpha}{c}{p_s}/({k_0^2}{q}),
 \end{equation}
-and the kernels of integral equations (\ref{eq10})--(\ref{eq12}) are written as
+and the kernels of integral equations (\ref{int_eq1})--(\ref{int_eq3}) are written as
 \begin{align}
 K_{\tilde{s},-m,\gamma}^{s,m,n}(q)=&\frac{c}{2}\int_{0}^{\infty}\left({\bf E}_{s,m,{n}}({\bf r})\times{\bf H}_{\tilde{s},-m,\gamma}({\bf r},{q})\right.\nonumber\\
 &\left. - {\bf E}_{\tilde{s},-{m},\gamma}({\bf r},{q})\times{\bf H}_{s,m,{n}}({\bf r})\right)\cdot{\bf z}_0\rho{d}\rho,\nonumber\\
@@ -244,16 +244,16 @@ where the circle above the symbols denotes the fields in a medium described by t
 
 %\section{Power radiated}
 When the expansion coefficients are found, the powers going into eigenwaves can be determined as
-\begin{align}\label{back_powers}
-P_{\rm mod}^{-}=&\frac{1}{4}\sum_{n}|a_{-,m,n}+b_{m,n}|^2N_{-,m,n} \nonumber\\
-P_{cs}^{-}=&\frac{1}{4}\sum_{\alpha=1}^{2}\int_{0}^{1}|a_{-,m,\a}+b_{m,\a}(q)|^2N_{-,m,\a}(q)dq
+\begin{align}
+P_{\rm mod}^{-}=&\frac{1}{4}\sum_{n}|a_{-,m,n}+b_{m,n}|^2N_{-,m,n}, \label{back_powers1}\\
+P_{cs}^{-}=&\frac{1}{4}\sum_{\alpha=1}^{2}\int_{0}^{1}|a_{-,m,\a}+b_{m,\a}(q)|^2N_{-,m,\a}(q)dq \label{back_powers2}
 \end{align}
 for the waves propagating along the cylinder in the negative $ z $-direction and
 \begin{equation}\label{forward_powers}
-P_{cs}^{+}=\frac{1}{4}\sum_{\gamma=1}^{2}\int_{0}^{1}|c_{+,m,\gamma}|^2\tilde{N}_{+,m,\gamma}(q)dq
+P_{cs}^{+}=\frac{1}{4}\sum_{\gamma=1}^{2}\int_{0}^{1}|c_{m,\gamma}|^2\tilde{N}_{+,m,\gamma}(q)dq
 \end{equation}
 for the waves scattered from the cylinder endface to the region $ z>0 $.
-In obtaining the formulas (\ref{back_powers}), (\ref{forward_powers}), the power orthogonality relations [], which are satisfied for a lossless medium, were taken into account.
+The formulas \eqref{back_powers1}--\eqref{forward_powers} were obtained using the power orthogonality relations [], which are satisfied for a lossless medium.
 
 \section{Numerical results}
 %\subsection{Figures}
