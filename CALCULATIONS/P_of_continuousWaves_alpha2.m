@@ -26,7 +26,7 @@ switch(typeOfCylinder)
         %aplus2 = a_sma_of_continuousWaves_alpha2(typeOfCylinder, q, p_0, p, k_0, a_0, EE1, GG1, HH1, MU1, EE, MU, c, m, z, I_f, I_z, d);        
         P = 1/4 * real(abs(aplus2).^2.* N_p);
         
-        P_sm1 = - c / k_0^2 * p./ q.* (Cm2.^2 + Dm2.^2).* psi;
+        P_sm1 = - c / k_0^2 * p./ q.* (abs(Cm2).^2 + abs(Dm2).^2).* psi;
         P = real(abs(aplus2).^2.* P_sm1); 
        
 end
