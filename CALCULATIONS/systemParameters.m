@@ -19,10 +19,10 @@ k_0 = w_0 / c;
 d = 4 * a_0;
 % d = 2 * pi / k_0 / 100;
 % d = a_0;
-j_f = 1e7 / (2 * d) * 0;
+j_f = 1e7 / (2 * d);
 j_z = 2e6 / (2 * pi * a_0);
 I_0 = sqrt((j_z * 2 * pi * a_0)^2 + (j_f * 2 * d)^2);
-L     = - 2 * pi / k_0 * 2; %%% z coordinate of center of source
+%L     = - 2 * pi / k_0 * 2; %%% z coordinate of center of source
 
 sourceParameters.m = m;
 sourceParameters.d = d;
