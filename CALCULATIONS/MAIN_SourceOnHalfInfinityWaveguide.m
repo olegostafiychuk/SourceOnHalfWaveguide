@@ -84,6 +84,11 @@ a_cs_alfa2_back_prop = a_cs_alfa2_back;
 a_cs_alfa1_back_prop(interalQ) = 0*a_cs_alfa1_back_prop(interalQ);
 a_cs_alfa2_back_prop(interalQ) = 0*a_cs_alfa2_back_prop(interalQ);
 
+a_cs_alfa1_forw_prop = a_cs_alfa1_forw;
+a_cs_alfa2_forw_prop = a_cs_alfa2_forw;
+a_cs_alfa1_forw_prop(interalQ) = 0*a_cs_alfa1_forw_prop(interalQ);
+a_cs_alfa2_forw_prop(interalQ) = 0*a_cs_alfa2_forw_prop(interalQ);
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%% forward excited waves %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 z =  2*pi / k_0 * (0);
@@ -241,8 +246,12 @@ P_cs_back(il) = - P_cs_minus_1 - P_cs_minus_2;
 % P_cs_plus_1 = 1/4.*sum(dq_simp.*abs(a_p_Ebeam_forw_prop).^2.*N_p1(q_cs, p_cs));
 % P_cs_plus_2 = 1/4.*sum(dq_simp.*abs(a_p_Hbeam_forw_prop).^2.*N_p2(q_cs, p_cs));
 
-P_p1 = @(q, p) 1/4.*(-1)^(m+1) * c * p./ (k_0.^2 * q);
-P_p2 = @(q, p) 1/4.*(-1)^(m+2) * c * p./ (k_0.^2 * q)*(-1);
+%P_p1 = @(q, p) 1/4.*(-1)^(m+1) * c * p./ (k_0.^2 * q); %%%%% <- probably, incorrect formulas
+%P_p2 = @(q, p) 1/4.*(-1)^(m+2) * c * p./ (k_0.^2 * q)*(-1);
+
+P_p1 = @(q, p) 1/4. * c * p./ (k_0.^2 * q);
+P_p2 = @(q, p) 1/4. * c * p./ (k_0.^2 * q);
+
 P_cs_plus_1 = sum(dq_simp.*abs(a_p_Ebeam_forw_prop).^2.*P_p1(q_cs, p_cs));
 P_cs_plus_2 = sum(dq_simp.*abs(a_p_Hbeam_forw_prop).^2.*P_p2(q_cs, p_cs));
                              
@@ -250,9 +259,42 @@ P_cs_forw(il) = P_cs_plus_1 + P_cs_plus_2;
 
 %P_ratio = P_mod_minus/(P_cs_minus + P_cs_plus)
 
+%%%%% in the presence of an infinite waveguide <-- new added! 
+P_n_minus_waveguide = zeros(size(q_n,1),1);
+P_n_plus_waveguide = zeros(size(q_n,1),1);
+for in = 1:size(q_n,1)
+    P_n_minus_waveguide(in) = P_of_discreteMode(typeOfCylinder, q_n(in), - p_n(in), k_0, a_0, ...
+                                                EE1, GG1, HH1, MU1, EE, MU, m, a_smn_back(in));
+    
+    P_n_plus_waveguide(in) = P_of_discreteMode(typeOfCylinder, q_n(in), p_n(in), k_0, a_0, ...
+                                                EE1, GG1, HH1, MU1, EE, MU, m, a_smn_forw(in));   
 end
 
-%% calculation of source resistance in free space
+P_mod_back_waveguide(il) = - sum(P_n_minus_waveguide);
+P_mod_forw_waveguide(il) =   sum(P_n_plus_waveguide);
+
+P_cs_minus_1_waveguide = ...
+      sum(dq_simp.*P_of_continuousWaves_alpha1(typeOfCylinder, q_cs, p_0, - p_cs, k_0, a_0, ...
+                                 EE1, GG1, HH1, MU1, EE, MU, c, m, z, j_f, j_z, d, a_cs_alfa1_back_prop));
+P_cs_minus_2_waveguide = ...
+      sum(dq_simp.*P_of_continuousWaves_alpha2(typeOfCylinder, q_cs, p_0, - p_cs, k_0, a_0, ...
+                                 EE1, GG1, HH1, MU1, EE, MU, c, m, z, j_f, j_z, d, a_cs_alfa2_back_prop));
+                             
+P_cs_plus_1_waveguide = ...
+      sum(dq_simp.*P_of_continuousWaves_alpha1(typeOfCylinder, q_cs, p_0, p_cs, k_0, a_0, ...
+                                 EE1, GG1, HH1, MU1, EE, MU, c, m, z, j_f, j_z, d, a_cs_alfa1_forw_prop));
+P_cs_plus_2_waveguide = ...
+      sum(dq_simp.*P_of_continuousWaves_alpha2(typeOfCylinder, q_cs, p_0, p_cs, k_0, a_0, ...
+                                 EE1, GG1, HH1, MU1, EE, MU, c, m, z, j_f, j_z, d, a_cs_alfa2_forw_prop));
+                              
+P_cs_back_waveguide(il) = - P_cs_minus_1_waveguide - P_cs_minus_2_waveguide;
+P_cs_forw_waveguide(il) =   P_cs_plus_1_waveguide + P_cs_plus_2_waveguide;
+
+P_sum_waveguide(il) = P_mod_back_waveguide(il) + P_mod_forw_waveguide(il) + P_cs_back_waveguide(il) + P_cs_forw_waveguide(il)
+
+end
+
+%% calculation of the power radiated by the source located in free space
 delta = 0;
 pp = @(q) sqrt(1 - q.^2);
 % N_p1 = @(q, p) (-1)^(m+1) * c * p./ (k_0.^2 * q);
@@ -272,6 +314,7 @@ P_Hwave_minus  =  quadgk(@(q) abs(a_sma2_freeSpace(q, - pp(q), k_0, p_0, a_0, m,
 P_free_space_E = P_Ewave_plus - P_Ewave_minus;
 P_free_space_H = P_Hwave_plus - P_Hwave_minus;
 P_free_space = P_free_space_E + P_free_space_H
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % figure(7)
 % plot(LL/lambda_0, P_mod_back/P_free_space, 'r'); hold on
@@ -281,7 +324,7 @@ P_free_space = P_free_space_E + P_free_space_H
 figure(10)
 bar(p_n, -P_n_minus/P_free_space);
 
-P_Ratio = P_mod_back/(P_cs_back + P_cs_forw)
+%P_Ratio = P_mod_back/(P_cs_back + P_cs_forw)
 
 % %%%%% for waveguide
 % P_alp1_forw  =  quadgk(@(q) P_of_continuousWaves_alpha1(typeOfCylinder,...
