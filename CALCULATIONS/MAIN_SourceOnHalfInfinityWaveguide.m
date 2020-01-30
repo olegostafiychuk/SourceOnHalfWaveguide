@@ -95,9 +95,9 @@ z =  2*pi / k_0 * (0);
 %L = sourceParameters.zCoordinate;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 lambda_0 = 2 * pi / k_0; 
-L_0 = 5*a_0; L_END = 2*lambda_0; NL = 2240; %56 - было % требуется как минимум 1120 точек на одну длину волны
+L_0 = lambda_0; L_END = 2*lambda_0; NL = 1200; % % требуется как минимум 1120 точек на одну длину волны
 % LL = L_0:(L_END - L_0)/NL:L_END;
-LL = lambda_0;%[0.2 0.5 1.5]*lambda_0;
+LL = 0.697*lambda_0;%[0.2 0.5 1.5]*lambda_0;
 P_mod_back = zeros(size(LL,2),1);
 P_cs_back  = zeros(size(LL,2),1);
 P_cs_forw  = zeros(size(LL,2),1);
@@ -259,7 +259,9 @@ P_cs_forw(il) = P_cs_plus_1 + P_cs_plus_2;
 
 %P_ratio = P_mod_minus/(P_cs_minus + P_cs_plus)
 
-%%%%% in the presence of an infinite waveguide <-- new added! 
+end
+
+%% %%% in the presence of an infinite waveguide <-- new added! 
 P_n_minus_waveguide = zeros(size(q_n,1),1);
 P_n_plus_waveguide = zeros(size(q_n,1),1);
 for in = 1:size(q_n,1)
@@ -270,8 +272,8 @@ for in = 1:size(q_n,1)
                                                 EE1, GG1, HH1, MU1, EE, MU, m, a_smn_forw(in));   
 end
 
-P_mod_back_waveguide(il) = - sum(P_n_minus_waveguide);
-P_mod_forw_waveguide(il) =   sum(P_n_plus_waveguide);
+P_mod_back_waveguide = - sum(P_n_minus_waveguide);
+P_mod_forw_waveguide =   sum(P_n_plus_waveguide);
 
 P_cs_minus_1_waveguide = ...
       sum(dq_simp.*P_of_continuousWaves_alpha1(typeOfCylinder, q_cs, p_0, - p_cs, k_0, a_0, ...
@@ -287,12 +289,11 @@ P_cs_plus_2_waveguide = ...
       sum(dq_simp.*P_of_continuousWaves_alpha2(typeOfCylinder, q_cs, p_0, p_cs, k_0, a_0, ...
                                  EE1, GG1, HH1, MU1, EE, MU, c, m, z, j_f, j_z, d, a_cs_alfa2_forw_prop));
                               
-P_cs_back_waveguide(il) = - P_cs_minus_1_waveguide - P_cs_minus_2_waveguide;
-P_cs_forw_waveguide(il) =   P_cs_plus_1_waveguide + P_cs_plus_2_waveguide;
+P_cs_back_waveguide = - P_cs_minus_1_waveguide - P_cs_minus_2_waveguide;
+P_cs_forw_waveguide =   P_cs_plus_1_waveguide + P_cs_plus_2_waveguide;
 
-P_sum_waveguide(il) = P_mod_back_waveguide(il) + P_mod_forw_waveguide(il) + P_cs_back_waveguide(il) + P_cs_forw_waveguide(il)
-
-end
+P_sum_waveguide = P_mod_back_waveguide + P_mod_forw_waveguide + P_cs_back_waveguide + P_cs_forw_waveguide
+R_sum_waveguide = P_sum_waveguide*2 / I_0^2 * toOhms
 
 %% calculation of the power radiated by the source located in free space
 delta = 0;
@@ -314,15 +315,16 @@ P_Hwave_minus  =  quadgk(@(q) abs(a_sma2_freeSpace(q, - pp(q), k_0, p_0, a_0, m,
 P_free_space_E = P_Ewave_plus - P_Ewave_minus;
 P_free_space_H = P_Hwave_plus - P_Hwave_minus;
 P_free_space = P_free_space_E + P_free_space_H
+R_free_space = P_free_space*2 / I_0^2 * toOhms
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % figure(7)
-% plot(LL/lambda_0, P_mod_back/P_free_space, 'r'); hold on
-% plot(LL/lambda_0, 5*P_cs_back/P_free_space, 'b'); hold on
-% plot(LL/lambda_0, 5*P_cs_forw/P_free_space, 'k'); hold on
+% plot(LL/lambda_0, P_mod_back/P_sum_waveguide, 'r'); hold on
+% plot(LL/lambda_0, 5*P_cs_back/P_sum_waveguide, 'b'); hold on
+% plot(LL/lambda_0, 5*P_cs_forw/P_sum_waveguide, 'k'); hold on
 
 figure(10)
-bar(p_n, -P_n_minus/P_free_space);
+bar(p_n, -P_n_minus/P_sum_waveguide);
 
 %P_Ratio = P_mod_back/(P_cs_back + P_cs_forw)
 

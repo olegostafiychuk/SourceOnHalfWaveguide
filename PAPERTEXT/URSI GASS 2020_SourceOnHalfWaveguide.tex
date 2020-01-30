@@ -19,7 +19,7 @@
 \def\a{\alpha}
 \newcommand{\cir}[1]{\mathop{#1}\limits^\circ}
 
-\title{Excitation of Electromagnetic Waves by a Nonsymmetric Antenna Located On the Surface of a Semi-Infinite Gyrotropic Cylinder}
+\title{Excitation of Electromagnetic Waves by a Nonsymmetric Antenna Located on the Surface of a Semi-Infinite Gyrotropic Cylinder}
 
 %% Use \affref{nn} and matching \aff{nn}{...} below for several authors
 %% Mark the presenting author with an asterisk
@@ -40,75 +40,45 @@
 \maketitle
 
 \begin{abstract}
-% How about this variant?:
-%Dffraction of electromagnetic waves on the endface of a semi-infinite gyrotropic cylinder located in free space is considered.
-%The waves are excted by a nonsymmetric antenna located at the surface of the cylnder.
 Electromagnetic wave excitation by a given nonsymmetric source in the presence of a semi-infinite gyrotropic cylinder located in free space is considered.
-The total source-excited field and the fields scattered by the endface of the cylinder are expanded in terms of eigenwaves of an infinite open gyrotropic waveguide and free space.
-The partial powers going to the discrete- and continuous-spectrum waves are numerically calculated.
- %..for the parameters typical...
- %Conditions are found..
+The source-excited field and the field scattered by the end of the cylinder are represented using eigenfunction expansions that refer to the respective regions on both sides of the cylinder endface.
+The distribution of the radiated power over the spatial spectrum of the excited waves is numerically analyzed.
  
 \end{abstract}
 
 \section{Introduction}
 
-In the past decades, an enhanced attention has been paid to the theoretical study of the problem of the electromagnetic wave excitation in systems including open gyrotropic guiding structures and given electric currents.
-In the case of employing a magnetized plasma as a gyrotropic medium, such a model can be used for describing antennas operated in laboratory devices -- helicon plasma sources, which are of importance for numerous experimental researches [1--3]. %\cite{Chen_review_2015, Caneses_Blackwell, Amatucci2011}.
-%which are of big interest for laboratory studies
+In the past decades, an enhanced attention has been paid to the problem of excitation of electromagnetic waves by given currents in systems containing open gyrotropic guiding structures.
+In the case where magnetoplasma is a gyrotropic medium, such a problem arises when describing, e.g., helicon plasma sources, which are important for numerous applications [1--3].
 In most studies devoted to such sources, consideration is limited to the excitation of only the discrete-spectrum waves (eigenmodes),
-which play a major role in forming the plasma discharge.
-Many works considering the complete spectrum of the excited waves deal with the case where an antenna is placed far from the ends of a plasma column so that it can be represented as an infinite structure.
-For an infinite plasma-filled cylindrical waveguide located in free space, the full-wave approach presented in \cite{EskinPIERS2017_meth} was applied for the analysis of the energy characteristics of a helicon-type source \cite{OstafEskin_APRASC2019}.
-However, in that type of radiating systems, it is often important to take into account the longitudinal boundedness of a plasma and consider the diffraction effects on the edges of a discharge \cite{Amatucci2011}.
-%This can be realized by regarding the full spectrum of excited waves.
-%The analysis of radiation characteristics of a nonsymmetric antenna located on the surface of an open plasma-filled cylindrical waveguide of infinite length was performed in [] by taking into account the full spectrum of excited waves.
-%Для правильного описания излучения необходимо учитывать конечность плазменного столба.
+because they play a major role in maintaining the helicon discharge.
+Many works on the subject deal with the case where an antenna is placed far from the ends of a plasma column so that it can be represented as an infinitely long guiding structure.
+For such a cylindrical waveguide located in free space, the full-wave approach presented in \cite{EskinPIERS2017_meth} was applied for the analysis of the energy characteristics of a helicon-type source \cite{OstafEskin_APRASC2019}.
+However, it is important in some cases to take into account a finite length of the plasma cylinder and consider diffraction by its ends \cite{Amatucci2011}.
 
-In this work, the main features of wave excitation by an antenna with the nonsymmetric electric-current distribution in the presence of a semi-infinite cylinder filled with a magnetoplasma are considered.
-For finding the energy characteristics of such a source, an expansion of the excited field and fields of waves scattered by the endface of the cylinder over the set of eigenwaves of an infinite open gyrotropic waveguide \cite{EskinPIERS2017_meth} and free space is used.
-%An enhanced interest in rigorous solutions...
-
-%\section{Layout}
-
-
-%The URSI Summary Paper should be single spaced, two column and
-%\textbf{sized for A4 paper} according to this template. The paper should be
-%\textbf{at least 2 pages long} and no longer than \textbf{4 pages}. Note
-%that this template does \emph{not} meet the minimum length requirements: it
-%does not completely fill at least two pages
-
-%The body text should be Times New Roman 10~pt. Sections should be titled
-%and numbered in bold, with Times New Roman 12~pt. The top and bottom
-%margins should be 2.5~cm (1~inch), and the left- and right-hand margins
-%should be 1.6~cm (0.63~inch). Paragraphs should be separated with one blank
-%line. Do not indent paragraphs.
-
-%The title should be centered according to this template. The author's (or
-%authors') name and complete organizational affiliation should be two lines
-%below the title. If there are multiple authors, the presenter is to be
-%identified with an asterisk. The text should start three lines below the
-%last name.
-
+In this work, the features of wave excitation by an antenna with the nonsymmetric electric-current distribution in the presence of a semi-infinite cylinder filled with a magnetoplasma are considered.
+To find the energy characteristics of such a source, the excited field and the field scattered by the end of the cylinder are represented using eigenfunction expansions referring to the regions on both sides of the cylinder endface.
 
 \section{Formulation of the Problem}
 
-Consider a semi-infinite cylinder of radius $ a $ that is located in free space and has the axis of symmetry coinciding with the $ z $ axis of the cylindrical coordinate system ($ \rho, \phi, z $).
-The structure is placed in the region $ z<0 $, and its endface lies in the plane $ z=0 $ as is shown in Fig.~\ref{geometry}.
+Consider a semi-infinite cylinder of radius $ a $ that is located in free space and has the symmetry axis coinciding with the $ z $ axis of a cylindrical coordinate system ($ \rho, \phi, z $).
+The cylinder is placed in the region $ z<0 $, and its endface lies in the plane $ z=0 $, as is shown in Fig.~\ref{geometry}.
 \begin{figure}[htbp]%[htbp]
 	\centering
 	\includegraphics[width=70mm]{figures/fig1.eps}
 	\caption{Geometry of the problem.}
 	\label{geometry}
 \end{figure}
-The field is excited by a given electric current specified on the side surface of the cylinder between planes $ z=-L-d $ and $ z=-L+d $ (see Fig.~\ref{geometry}) with the density written, with the $ \exp(i\omega t) $ time dependence dropped, as
+The field is excited by an electric current specified on the side surface of the cylinder between the planes $ z=-L-d $ and $ z=-L+d $ (see Fig.~\ref{geometry}). The current density can be written, with $ \exp(i\omega t) $ time dependence dropped, as
 \begin{align} \label{source_eq}
-{\bf J}({\bf r})=&\,({\pmb\phi}_{0}j_{\phi}+{\bf z}_0j_z)\delta(\rho-a) \nonumber \\
-&\times\exp\left(-im\phi-ik_0{\tilde p}z\right).
+{\bf J}({\bf r})=&\,({\pmb\phi}_{0}j_{\phi}+{\bf z}_0j_z)\delta(\rho-a)
+\exp\left(-im\phi-ik_0{\tilde p}z\right) \nonumber \\
+&\times\left[U(z+L+d)-U(z+L-d)\right].
 \end{align} 
-Here, $ d $ is the half-length of the antenna (the condition $ d<L $ is fulfilled), integer $ m $ and the constant $ \tilde p $ determine the current dependence on the azimuthal and longitudinal coordinates, respectively, and $ k_0=\omega/c $ is the wave number in free space ($ c $  is the speed of light in free space).
-The total amplitude of the current can be found as  $ |I_0|^2=|I_\phi|^2+|I_z|^2 $, where $ I_\phi=2dj_{\phi} $ and $ I_z=2\pi aj_z $.
-The cylinder is aligned with an external static magnetic field $ \textbf{B}_{0}={B}_{0}\textbf{z}_{0} $ and filled with a cold collisionless magnetoplasma, which is described by the dielectric permittivity tensor
+Here, $ \delta $ is the Dirac function, $ U $ is the Heaviside function, $ d $ is the half-length of the antenna (the condition $ d<L $ is fulfilled), the integer $ m $ and the constant $ \tilde p $ determine the current dependence on the azimuthal and longitudinal coordinates, respectively, and $ k_0=\omega/c $ is the wave number in free space ($ c $  is the speed of light in free space).
+The total amplitude of the current can be written as  $ |I_0|^2=|I_\phi|^2+|I_z|^2 $, where $ I_\phi=2dj_{\phi} $ and $ I_z=2\pi aj_z $.
+
+The plasma inside the cylinder, with a superimposed static magnetic field $ \textbf{B}_{0}={B}_{0}\textbf{z}_{0} $, is described by the dielectric permittivity tensor
 \begin{equation} \label{eq1}
 \hat{\varepsilon}=\!\!
 \left(
@@ -127,78 +97,27 @@ where
 &\hspace{10mm}g=-\frac{\op^2\oH}{(\oH^2-\omega^2)\omega}+\frac{\Op^2\OH}{(\OH^2-\omega^2)\omega}.
 \end{align}
 Here, $ \op $ and $ \Op $ are the electron and ion plasma frequencies, and $ \oH $ and $ \OH $ are the gyrofrequencies of the corresponding particles, respectively.
-It should be noted that the Gaussian system of units is used throughout the work.
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%Let us consider a semi-infinite cylinder of radius $ a $ located in free space and filled with a cold collisionless magnetoplasma.
-%The cylinder axis is parallel to an external static magnetic field $ \textbf{B}_{0} $ and coincides with the $ z $ axis of the cylindrical coordinate system ($ \rho, \phi, z $).
-%The cylinder is located in the region $ z<0 $ and its endface lies in the plane $ z=0 $ as is shown in Fig.~\ref{geometry}.
-%\begin{figure}[htbp]
-%  \centering
-%  \includegraphics[width=70mm]{figures/fig1.eps}
-%  \caption{Geometry of the problem.}
-%  \label{geometry}
-%\end{figure}
-%The plasma inside the cylinder is described by the dielectric permittivity tensor which has the following form for a monochromatic signal:
-%\begin{equation} \label{eq1}
-%\hat{\varepsilon}=\!\!
-%\left(
-%\begin{array}{ccc}
-%\varepsilon & -ig & 0 \\
-%ig & \varepsilon & 0 \\
-%0 & 0 & \eta
-%\end{array}
-%\right),
-%\end{equation}
-%where
-%\begin{align} \label{eq2}
-%\varepsilon &=\!1+\frac{\op^2}{\oH^2-\omega^2}+\frac{\Op^2}{\OH^2-\omega^2}, \nonumber \\
-%g&=-\frac{\op^2\oH}{(\oH^2-\omega^2)\omega}+\frac{\Op^2\OH}{(\OH^2-\omega^2)\omega}, \\
-%\eta&=1-\frac{\op^2}{\omega^2}-\frac{\Op^2}{\omega^2}. \nonumber
-%\end{align}
-%In (\ref{eq2}), the standard notations  $ \op $ and $ \Op $ for the electron and ion plasma frequencies, and $ \oH $ and $ \OH $ for the gyrofrequencies of the corresponding particles are used , respectively.
-%The source is represented as an electric current specified on the side surface of the cylinder between planes $ z=-L-d $ and $ z=-L+d $ (see Fig.~\ref{geometry}).  The current density is written, with the $ \exp(i\omega t) $ time dependence dropped, as
-%\begin{align} \label{source_eq}
-%{\bf J}({\bf r})=&\,({\pmb\phi}_{0}j_{\phi}+{\bf z}_0j_z)\delta(\rho-a) \nonumber \\
-%&\times\exp\left(-im\phi-ik_0{\tilde p}z\right).
-%\end{align} 
-%Here, $ d $ is the half-length of the antenna, $ L $ is the distance between the center of the antenna and the endface of the cylinder (the condition $ L>d $ is fulfilled). Integer $ m $ and the constant $ \tilde p $ determine the current dependence on the azimuthal and longitudinal coordinates, respectively, and $ k_0=\omega/c $ is the wave number in free space ($ c $  is the speed of light in free space).
-%The total amplitude of the current can be found as  $ |I_0|^2=|I_\phi|^2+|I_z|^2 $, where $ I_\phi=2dj_{\phi} $ and $ I_z=2\pi aj_z $. 
-%It should be noted that the Gaussian system of units is used throughout the work.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%The paper should include an abstract and the usual subsections and should
-%be in English.
-
-%Citations and references should follow IEEE format (as used by the
-%\emph{Radio Science Bulletin}).  Citations can be of the
-%form~\cite{cannon,mannix} as is appropriate to the sentence, with the
-%reference format illustrated at the end of this template.
+Note that the Gaussian system of units is used throughout this work.
 
 \section{The Source-Excited and Diffracted Fields}
 
-On the basis of the cylindrical symmetry of the problem, the longitudinal components of the excited and diffracted wave fields can be represented as follows:  
+Using the cylindrical symmetry of the problem, the longitudinal components of the excited and diffracted fields can be represented as 
 \begin{equation}\label{modal_fields}
 \begin{bmatrix} {E}_{z;s,m}({\bf r},q)\\ {	H}_{z;s,m}({\bf r},q)\end{bmatrix} = \begin{bmatrix} {E}_{z;s,m}(\rho, q)\\ {H}_{z;s,m}(\rho, q)\end{bmatrix}e^{-i m\f - i k_0
 	p_{s}(q)z}.
 \end{equation}
-Here, the azimuthal index $ m $ is the same as in (\ref{source_eq}), the subscript $ s $  denotes the wave propagation direction, either positive ($ s=+ $) or negative ($ s=- $), $ q $ and $p_{s}(q)$ are the normalized (to $ k_{0} $) transverse and longitudinal wave numbers in free space, respectively.
-%, and time dependence $ \exp(i\omega t) $ is omitted.
+Here, the azimuthal index $ m $ is the same as in (\ref{source_eq}), the subscript $ s $  denotes the wave propagation direction, either positive ($ s=+ $) or negative ($ s=- $), and $ q $ and $p_{s}(q)$ are the normalized (to $ k_{0} $) transverse and longitudinal wave numbers in free space, respectively.
 The function $ p_{s}(q) $ obeys the relation $p_{\rm +}(q)\equiv p(q)= -p_{\rm -}(q)$, where $ p(q)=(1-q^2)^{1/2} $.
 It is assumed that $ {\rm Re}[p(q)]>0 $ if $ q $ is real and less than unity, and  $ {\rm Im}[p(q)]<0 $ otherwise.
-The transverse field components  $E_{\rho;s,m}$, $E_{\f;s,m}$, $H_{\rho;s,m}$, and $H_{\f;s,m}$ can be found from the longitudinal components presented in (\ref{modal_fields}).
-In what follows, we will assume that only the waves with the azimuthal index $ m $ are excited by the source.
+The transverse field components  $E_{\rho;s,m}$, $E_{\f;s,m}$, $H_{\rho;s,m}$, and $H_{\f;s,m}$ can be found from the longitudinal components (\ref{modal_fields}).
+In what follows, we take into account that only the waves with the azimuthal index $ m $ are excited by the source.
 
-As the given sources are regarded, it is supposed that the antenna current is not affected by the radiated and diffracted wave fields.
-In the half-space $ z<0 $, the field excited by the current (\ref{source_eq}), is represented as an expansion in terms of eigenwaves of an open waveguide and is written in the source-free regions as
+The field excited by the given current (\ref{source_eq}) in the half-space $ z<0 $ is expanded in terms of eigenwaves of an open waveguide and is written in the source-free regions as
 \begin{align}\label{eq4} 
 &\hspace{-4mm}\left[\!\!\!
 \begin{array}{c}
-{E_z^{(\rm exc)}}({\bf r})\\
-{H_z^{(\rm exc)}}({\bf r})
+{E_z^{(\rm ex)}}({\bf r})\\
+{H_z^{(\rm ex)}}({\bf r})
 \end{array}\!\!\!\right] = 
 \sum_{n}a_{s,m,n}
 \left[\!\!\!
@@ -213,21 +132,21 @@ In the half-space $ z<0 $, the field excited by the current (\ref{source_eq}), i
 {H}_{z;s,m,\alpha}(\rho,q)
 \end{array}\!\!\!\right]e^{-im\f - ik_0 p_{s} z}dq.
 \end{align}
-Here, $ s=+ $ for $ z>-L+d $ and $ s=- $ for $ z<-L-d $; the functions $ E_{z;s,m,n}(\rho) $ and $ H_{z;s,m,n}(\rho) $ describe the radial distributions of the fields of the discrete-spectrum waves (eigenmodes) with the radial index $ n $ and the longitudinal wave numbers $ p_{s,m,n} $ ($ p_{+,m,n}=-p_{-,m,n}=p_{m,n} $);
-the subscript $ \alpha $ corresponds to two kinds of the continuous-spectrum waves described by the functions $ E_{z;s,m,\alpha}(\rho,q) $ and $ H_{z;s,m,\alpha}(\rho,q) $.
+Here, $ s=+ $ for $ -L+d<z<0 $ and $ s=- $ for $ z<-L-d $; the functions $ E_{z;s,m,n}(\rho) $ and $ H_{z;s,m,n}(\rho) $ describe the radial distributions of the fields of the discrete-spectrum waves (eigenmodes) with the radial index $ n $ and the longitudinal wave numbers $ p_{s,m,n} $ ($ p_{+,m,n}=-p_{-,m,n}=p_{m,n} $);
+and the subscript $ \alpha $ corresponds to two kinds of the continuous-spectrum waves described by the functions $ E_{z;s,m,\alpha}(\rho,q) $ and $ H_{z;s,m,\alpha}(\rho,q) $.
 Detailed expressions for these fields, which constitute the complete set of eigenwaves of an open gyrotropic cylindrical waveguide, can be found in \cite{EskinPIERS2017_meth}.
-The quantities $ a_{s,m,n} $ and $ a_{s,m,\alpha}(q) $ are obtained using the well-known technique developed for finding the excitation coefficients of the modes of open waveguides \cite{Kondrat'ev1999} and are given by the expressions
+The quantities $ a_{s,m,n} $ and $ a_{s,m,\alpha}(q) $ are obtained using the well-known technique developed for finding the expansion coefficients of the modes of open waveguides \cite{Kondrat'ev1999} and are given by the expressions
 \begin{align}\label{eq5}
-a_{s,m,n}=&\frac{1}{N_{s,m,n}} \int{\bf J}({\bf r})\cdot{\bf E}^{({\rm T})}_{-s,-m,n}({\bf r})d{\bf r} \nonumber\\
+a_{s,m,n}=&\frac{1}{N_{+,m,n}} \int{\bf J}({\bf r})\cdot{\bf E}^{({\rm T})}_{-s,-m,n}({\bf r})d{\bf r} \nonumber\\
 =&\left[j_{\phi}{E}^{({\rm T})}_{\phi;-s,-m,n}(a) + j_z {E}^{({\rm T})}_{z;-s,-m,n}(a)\right] \nonumber \\
-\times&\frac{4\pi a}{N_{s,m,n}}\frac{\sin\left[k_0(\tilde{p} - p_{s,m,n})d\right]}{k_0(\tilde{p} - p_{s,m,n})}e^{-ik_0p_{s,m,n}L}, \nonumber\\
-a_{s,m,\alpha}(q)=&\frac{1}{N_{s,m,\alpha}(q)} \int{\bf J}({\bf r})\cdot{\bf E}^{({\rm T})}_{-s,-m,\alpha}({\bf r},q)d{\bf r} \nonumber \\
+&\times\frac{4\pi a}{N_{+,m,n}}\frac{\sin\left[k_0(\tilde{p} - p_{s,m,n})d\right]}{k_0(\tilde{p} - p_{s,m,n})}e^{-ik_0p_{s,m,n}L}, \nonumber\\
+a_{s,m,\alpha}(q)=&\frac{1}{N_{+,m,\alpha}(q)} \int{\bf J}({\bf r})\cdot{\bf E}^{({\rm T})}_{-s,-m,\alpha}({\bf r},q)d{\bf r} \nonumber \\
 =&\left[j_{\phi}{E}^{({\rm T})}_{\phi;-s,-m,\alpha}(a,q) + j_z {E}^{({\rm T})}_{z;-s,-m,\alpha}(a,q)\right] \nonumber \\
-\times&\frac{4\pi a}{N_{s,m,\alpha}(q)} \frac{\sin\left[k_0(\tilde{p} - p_s(q))d\right]}{k_0(\tilde{p} - p_s(q))}e^{-ik_0p_{s}L}, 
+&\times\frac{4\pi a}{N_{+,m,\alpha}(q)} \frac{\sin\left[k_0(\tilde{p} - p_s(q))d\right]}{k_0(\tilde{p} - p_s(q))}e^{-ik_0p_{s}L}, 
 \end{align}
-where integration is performed over the region occupied by the current (\ref{source_eq}), the superscript (T) denotes fields taken in an auxiliary medium that is described by the transposed dielectric permittivity tensor ${\hat{\varepsilon}}^{\rm T}$, and $ N_{s,m,n} $ and $ N_{s,m,\alpha}(q) $ are the norms of the discrete- and continuous-spectrum waves, respectively, which are given by the orthogonality relations presented in \cite{EskinPIERS2017_meth}.
+where integration is performed over the region occupied by the current (\ref{source_eq}), the superscript (T) denotes fields taken in an auxiliary medium that is described by the transposed dielectric permittivity tensor ${\hat{\varepsilon}}^{\rm T}$, and $ N_{s,m,n} $ and $ N_{s,m,\alpha}(q) $ are the norms of the discrete- and continuous-spectrum waves, respectively, which follow from the orthogonality relations presented in \cite{EskinPIERS2017_meth}.
 
-The fields reflected from the cylinder endface to the region $ z<0 $ are also expanded in terms of eigenwaves of an infinite open gyrotropic waveguide.
+The field reflected from the cylinder end to the region $ z<0 $ is also expanded in terms of eigenwaves of an open gyrotropic waveguide.
 The longitudinal components of the reflected field, hereafter marked by the superscript ($ \rm r $), are represented as
 \begin{align}\label{eq6}
 &\hspace{-4mm}\left[\!\!\!
@@ -246,20 +165,21 @@ The longitudinal components of the reflected field, hereafter marked by the supe
 \end{array}\!\!\!\right]\!\!e^{-im\f + ik_0 p z}\,dq,
 \end{align}
 where $ b_{-,m,n} $ and $ b_{-,m,\alpha}(q) $ are the expansion coefficients to be found.
-The longitudinal components of the field in the region $ z>0 $ are expanded in terms of the continuous-spectrum waves of free space as
+
+The field transmitted to the region $ z>0 $ is expanded in terms of the continuous-spectrum waves of free space as
 \begin{align}\label{eq7}
-&\hspace{-3mm}\left[\!\!\!
+&\hspace{-2mm}\left[\!\!\!\!
 \begin{array}{c}
-{E_z^{(\rm sc)}}\\
-{H_z^{(\rm sc)}}
-\end{array}\!\!\!\right]\!
-{=}\!\sum\limits_{\alpha=1}^{2}\!\int_{0}^{\infty}\!\!\!\!\!\!\! c_{+,m,\gamma}(q)\!\!\left[\!\!\!
+{E_z^{(\rm t)}}\\
+{H_z^{(\rm t)}}
+\end{array}\!\!\!\!\right]\!
+{=}\!\sum\limits_{\gamma=1}^{2}\!\int_{0}^{\infty}\!\!\!\!\!\!\! c_{+,m,\gamma}(q)\!\!\left[\!\!\!
 \begin{array}{c}
-E_{z;-,m,\gamma}(\rho,q)\\
-H_{z;-,m,\gamma}(\rho,q)
+E_{z;+,m,\gamma}(\rho,q)\\
+H_{z;+,m,\gamma}(\rho,q)
 \end{array}\!\!\!\right]\!\!e^{-i m\f-ik_0 p z}{d}q,
 \end{align}
-where the superscript~$({\rm sc})$ denotes the fields scattered to free space, $\gamma=1$ and $\gamma=2$ correspond to the $E$- and $H$-polarized waves, respectively, and $ c_{+,m,\gamma}(q) $ are unknown coefficients depending on $ q $.
+where the superscript~$({\rm t})$ denotes the field transmitted to free space, $\gamma=1$ and $\gamma=2$ correspond to the $E$- and $H$-polarized waves, respectively, and $ c_{+,m,\gamma}(q) $ are unknown coefficients depending on $ q $.
 The eigenwaves of free space are written as
 \begin{align}\label{eq8}
 E_{z;s,m,\gamma}(\rho,q) {=} q J_m(k_0q \rho)\delta_{\gamma,1},\nonumber\\ H_{z;s,m,\gamma}(\rho,q) {=} q J_m(k_0q \rho)\delta_{\gamma,2},
@@ -267,12 +187,12 @@ E_{z;s,m,\gamma}(\rho,q) {=} q J_m(k_0q \rho)\delta_{\gamma,1},\nonumber\\ H_{z;
 where $J_m$ is the Bessel function of the first kind of order $m$ and $\delta_{\rm
 \alpha,\beta}$ is the Kronecker delta.
 
-Satisfying the boundary conditions for the tangential field components at plane $ z=0 $
+Satisfying the boundary conditions for the tangential field components at the plane $ z=0 $, i.e.,
 \begin{eqnarray}\label{bound_cond}
-&&\hspace{-5mm}{E}^{(\rm exc)}_{\f}+{E}^{(\rm r)}_{\f}={E}^{(\rm sc)}_{\f},\quad {H}^{(\rm exc)}_{\f}+{H}^{(\rm r)}_{\f}={H}^{(\rm sc)}_{\f},\nonumber\\
-&&\hspace{-5mm}{E}^{(\rm exc)}_{\rho}+{E}^{(\rm r)}_{\rho}={E}^{(\rm sc)}_{\rho},\quad {H}^{(\rm exc)}_{\rho}+{H}^{(\rm r)}_{\rho}={H}^{(\rm sc)}_{\rho},
+&&\hspace{-5mm}{E}^{(\rm ex)}_{\rho}+{E}^{(\rm r)}_{\rho}={E}^{(\rm t)}_{\rho},\quad {E}^{(\rm ex)}_{\f}+{E}^{(\rm r)}_{\f}={E}^{(\rm t)}_{\f},\nonumber\\
+&&\hspace{-5mm}{H}^{(\rm ex)}_{\rho}+{H}^{(\rm r)}_{\rho}={H}^{(\rm t)}_{\rho},\quad {H}^{(\rm ex)}_{\f}+{H}^{(\rm r)}_{\f}={H}^{(\rm t)}_{\f},
 \end{eqnarray}
-and taking into account the orthogonality relations for the eigenwaves in both the regions $ z<0 $ and $ z>0 $, the system of integral equations for the expansion coefficients $ b_{-,m,n} $, $ b_{-,m,\alpha}(q) $, and $ c_{+,m,\gamma}(q) $ is derived in the following form:
+and taking into account the orthogonality relations for the eigenwaves in the regions $ z<0 $ and $ z>0 $, a system of integral equations for the expansion coefficients $ b_{-,m,n} $, $ b_{-,m,\alpha}(q) $, and $ c_{+,m,\gamma}(q) $ is derived in the following form:
 \begin{align}
 &c_{+,m,\gamma}(q)\tilde{N}_{+,m,\gamma}(q)=\sum_{n}a_{+,m,n}K_{-,-m,\gamma}^{+,m,n}(q) \nonumber\\
 &+ \sum_{\alpha=1}^{2}\int_{0}^{\infty}\!\!\!a_{+,m,\alpha}(\tilde{q})K_{-,-m,\gamma}^{+,m,\alpha}(\tilde{q},q)d\tilde{q} \nonumber+\sum_{n}b_{-,m,n}K_{-,-m,\gamma}^{-,m,n}(q) \\
@@ -287,111 +207,77 @@ The norm of the eigenwaves of free space in \eqref{int_eq1} is given by the form
 and the kernels of integral equations (\ref{int_eq1})--(\ref{int_eq3}) are written as
 \begin{align}
 &K_{-,-m,\gamma}^{s,m,n}(q)\!=\!\frac{c}{4\pi}\int_{0}^{2\pi}\!\!\!\!\!{d}{\phi}\!\!\!\!\int_{0}^{\infty}\!\!\left[{\bf E}_{s,m,{n}}({\bf r}){\times}{\bf H}_{-,-m,\gamma}({\bf r},{q})\right.\nonumber\\
-&\hspace{15mm}\left. - {\bf E}_{-,-{m},\gamma}({\bf r},{q}){\times}{\bf H}_{s,m,{n}}({\bf r})\right]\!\!{\cdot}{\bf z}_0\rho{d}\rho,\nonumber\\
+&\hspace{19mm}\left. - {\bf E}_{-,-{m},\gamma}({\bf r},{q}){\times}{\bf H}_{s,m,{n}}({\bf r})\right]\!\!{\cdot}{\bf z}_0\rho{d}\rho,\nonumber\\
 &K_{-,-m,\gamma}^{s,m,\a}(\tilde{q},q)\!=\!\frac{c}{4\pi}\int_{0}^{2\pi}\!\!\!\!\!{d}{\phi}\!\!\!\!\int_{0}^{\infty}\!\!\left[{\bf E}_{s,m,{\a}}({\bf r},\tilde{q}){\times}{\bf H}_{-,-m,\gamma}({\bf r},{q})\right.\nonumber\\
-&\hspace{15mm}\left. - {\bf E}_{-,-{m},\gamma}({\bf r},{q}){\times}{\bf H}_{s,m,{\a}}({\bf r},\tilde{q})\right]\!\!{\cdot}{\bf z}_0\rho{d}\rho,\nonumber\\
+&\hspace{22mm}\left. - {\bf E}_{-,-{m},\gamma}({\bf r},{q}){\times}{\bf H}_{s,m,{\a}}({\bf r},\tilde{q})\right]\!\!{\cdot}{\bf z}_0\rho{d}\rho,\nonumber\\
 &M_{+,m,\gamma}^{+,-m,n}(\tilde{q})\!=\!\frac{c}{4\pi}\int_{0}^{2\pi}\!\!\!\!\!{d}{\phi}\!\!\!\!\int_{0}^{\infty}\!\!\left[{\bf E}_{+,m,{\gamma}}({\bf r},\tilde{q}){\times}{\bf H}^{({\rm T})}_{+,-m,n}({\bf r})\right.\nonumber\\
-&\hspace{15mm}\left. - {\bf E}^{({\rm T})}_{+,-{m},n}({\bf r}){\times}{\bf H}_{+,m,{\gamma}}({\bf r},\tilde{q})\right]\!\!{\cdot}{\bf z}_0\rho{d}\rho,\nonumber\\
+&\hspace{20mm}\left. - {\bf E}^{({\rm T})}_{+,-{m},n}({\bf r}){\times}{\bf H}_{+,m,{\gamma}}({\bf r},\tilde{q})\right]\!\!{\cdot}{\bf z}_0\rho{d}\rho,\nonumber\\
 &M_{+,m,\gamma}^{+,-m,\alpha}(q,\tilde{q})\!=\!\frac{c}{4\pi}\int_{0}^{2\pi}\!\!\!\!\!{d}{\phi}\!\!\!\!\int_{0}^{\infty}\!\!\left[{\bf E}_{+,m,{\gamma}}({\bf r},\tilde{q}){\times}{\bf H}^{({\rm T})}_{+,-m,\alpha}({\bf r},q)\right.\nonumber\\
-&\hspace{15mm}\left. - {\bf E}^{({\rm T})}_{+,-{m},\alpha}({\bf r},\tilde{q}){\times}{\bf H}_{+,m,{\gamma}}({\bf r},q)\right]\!\!{\cdot}{\bf z}_0\rho{d}\rho. \label{eq14}
+&\hspace{23mm}\left. - {\bf E}^{({\rm T})}_{+,-{m},\alpha}({\bf r},\tilde{q}){\times}{\bf H}_{+,m,{\gamma}}({\bf r},q)\right]\!\!{\cdot}{\bf z}_0\rho{d}\rho. \label{eq14}
 \end{align}
-The power carried by the wave with the azimuthal index $ m $ to the negative direction of the $ z $-axis is determined via the expansion coefficients of the source-excited and backscattered fields as
+The power carried through the cross section $ z = z_{0}<-L-d $ to the negative direction of the $ z $-axis is determined by the expansion coefficients of the source-excited and reflected fields as $ P^{(-)}=P_{\rm mod}+P_{\rm cs} $, where
 \begin{align}
 P_{\rm mod}=&\sum_{n}P_{n}=\sum_{n}|a_{-,m,n}+b_{-,m,n}|^2{\cal P}_{+,m,n} \label{P_mod}
 \end{align}
-for the discrete-spectrum waves
-($ P_{n} $ is the partial power going to the $ n $-th eigenmode) and
+describes the contribution of the discrete-spectrum waves
+($ P_{n} $ is the partial power going to the $ n $th eigenmode), whereas
 \begin{align}
 P_{\rm cs}=&\sum_{\alpha=1}^{2}\int_{0}^{1}|a_{-,m,\a}(q)+b_{-,m,\a}(q)|^2{\cal P}_{+,m,\a}(q)dq \label{P_cs}
 \end{align}
-for the continuous-spectrum waves, where $ {\cal P}_{s,m,n} $ and $ {\cal P}_{s,m,\alpha} $ are defined by the power orthogonality relations presented in \cite{OstafEskin_APRASC2019}.
-In obtaining \eqref{P_mod} and \eqref{P_cs}, the relations $ {\cal P}_{+,m,n}=-{\cal P}_{-,m,n} $ and $ {\cal P}_{+,m,\alpha}(q)=-{\cal P}_{-,m,\alpha}(q) $ have been used.
-%\begin{equation}
-%{\cal P}_{s, m, \begin{bmatrix} n \\ \alpha\end{bmatrix}}
-%\end{equation}
-The power scattered from the cylinder endface to the region $ z>0 $ is written via the expansion coefficients for waves in free space:
+describes the contribution of the continuous-spectrum waves. Here, $ {\cal P}_{s,m,n} $ and $ {\cal P}_{s,m,\alpha} $ are defined by the power orthogonality relations presented in \cite{OstafEskin_APRASC2019}.
+In deriving \eqref{P_mod} and \eqref{P_cs}, the relations $ {\cal P}_{+,m,n}=-{\cal P}_{-,m,n} $ and $ {\cal P}_{+,m,\alpha}(q)=-{\cal P}_{-,m,\alpha}(q) $ were used.
+The power transmitted from the cylinder end to the region $ z>0 $ is expressed via the expansion coefficients for waves in free space as
 \begin{equation}\label{forward_powers}
-P_{\rm fs}=\sum_{\gamma=1}^{2}\int_{0}^{1}|c_{+,m,\gamma}(q)|^2\frac{cp(q)}{4k_{0}^{2}q}dq.
+P^{(+)}=\sum_{\gamma=1}^{2}\int_{0}^{1}|c_{+,m,\gamma}(q)|^2\frac{cp(q)}{4k_{0}^{2}q}dq.
 \end{equation}
-%$ {\tilde {\cal P}}_{+,m,\gamma}=c{\rm Re}\left[p(q)/4k_{0}^{2}q\right] $.
-%\begin{equation}\label{forward_powers}
-%P_{\rm fs}=\sum_{\gamma=1}^{2}\int_{0}^{1}|c_{+,m,\gamma}(q)|^2{\tilde {\cal P}}_{+,m,\gamma}(q)dq,
-%\end{equation}
-%where $ {\tilde {\cal P}}_{+,m,\gamma}=1/4(-1)^{\gamma+1}\tilde{N}_{+,m,\gamma} $.
 
 \section{Numerical results}
-The integral equations \eqref{int_eq1}--\eqref{int_eq3} have numerically been solved using the Simpson's integration method.
-The powers going to the eigenwaves of the cylinder and free space have been calculated for the values of parameters in \eqref{source_eq} $ a=2{.}5 $\,cm, $ d=4a $, $ {\tilde p}=0 $, and $ m=1 $, which are typical of helical antennas used in gaseous plasma tubes for producing helicon waves.
+Integral equations \eqref{int_eq1}--\eqref{int_eq3} were numerically solved using Simpson's integration method.
+The powers going to the eigenwaves of the cylinder and free space have been calculated for the parameters $ a=2{.}5 $\,cm, $ d=4a $, $ {\tilde p}=0 $, and $ m=1 $, which are typical of helical antennas used in helicon plasma devices.
 It is assumed that the frequency of the source belongs to the resonant interval $ \omega_{\rm LH}<\omega<\oH $ of the whistler range, where $ \omega_{\rm LH}=(\oH\OH)^{1/2} $ is the lower-hybrid frequency.
-The values of dimensionless parameters $\o_{p}/\o_{H} = 12{.}7$, $  \omega_{\rm LH}/\oH=3{.}7\times10^{-3} $ and  $\o_{H} a/c = 1{.}17$ of a plasma medium have been used for calculations.
-Note that, due to a resonance character of a plasma in the considered frequency range, the cylinder supports an infinite number of the propagating eigenmodes.
-Figure~\ref{fig_P_from_L} shows the powers $ P_{\rm mod} $ and $ P_{\rm cs} $ as functions of $ L $ that varies in the range $ 5a<L<2\lambda_{0} $ ($ \lambda_{0}=2\pi/k_{0}\gg a$ is the free-space wavelength). All the values presented in this and forthcoming figures are normalized to the total power $ P_{0} $ radiated from the same source located in free space. 
-\begin{figure}[!b]%htbp]
+The following values of the dimensionless parameters of the plasma were used for calculations: $\o_{p}/\o_{H} = 12{.}7$, $  \omega_{\rm LH}/\oH=3{.}7\times10^{-3} $, and  $\o_{H} a/c = 1{.}17$.
+Note that due to the fact that a magnetoplasma is resonant in the considered frequency range, the cylinder supports an infinite number of the propagating eigenmodes.
+Figure~\ref{fig_P_from_L} shows the powers $ P_{\rm mod} $ and $ P_{\rm cs} $ as functions of $ L $ that varies in the range $ 5a<L<2\lambda_{0} $ ($ \lambda_{0}=2\pi/k_{0}\gg a$ is the free-space wavelength). All the values presented in this and the forthcoming figures are normalized to the total power $ P_{0} $ radiated from the same source in the case where the cylinder is infinite. 
+\begin{figure}[!b]
 	\centering
-	\includegraphics[width=75mm]{figures/fig_P_from_L.eps}
-	\caption{The normalized powers $ P_{\rm mod} $ (red line) and $ P_{\rm cs} $ (black line) as functions of the parameter $ L/\lambda_{0} $ for $  \omega/\oH=2{.}5\cdot10^{-2} $, $\o_{p}/\o_{H} = 12{.}7$, $  \omega_{\rm LH}/\oH=3{.}7\times10^{-3} $, $\o_{H} a/c = 1{.}17$, and $ j_z=0{.}25 j_{\f} $. The value of $ P_{\rm cs} $ is multiplied by $ 5 $.}
+	\includegraphics[width=73mm]{figures/fig_P_from_L.eps}
+	\caption{The normalized powers $ P_{\rm mod} $ (red line) and $ P_{\rm cs} $ (black line) as functions of the parameter $ L/\lambda_{0} $ for $  \omega/\oH=2{.}5\times10^{-2} $, $\o_{p}/\o_{H} = 12{.}7$, $  \omega_{\rm LH}/\oH=3{.}7\times10^{-3} $, $\o_{H} a/c = 1{.}17$, and $ j_z=0{.}25 j_{\f} $. The value of $ P_{\rm cs} $ is multiplied by $ 5 $.}
 	\label{fig_P_from_L}
 \end{figure}
-As can be seen in Fig.~\ref{fig_P_from_L}, the inequality $ P_{\rm mod}\gg P_{\rm cs} $ holds for the powers.
-%indicated with the red line is significantly higher than the power $ P_{\rm cs} $ for the continuous-spectrum waves, that is shown with the black line.
-%... goes to the discrete-spectrum waves. 
-% which propagate to the negative direction of the $ z $-axis. 
-%almost entirely reflecting from the end of the cylinder. %carrying the energy to the negative...
-The oscillations in the dependence $ P_{\rm mod}(L) $ are related to the interference of the small-scaled eigenmodes with the different propagation constants.
-The power $ P_{\rm cs} $ carried by the continuous-spectrum waves increases significantly at certain values of $ L/\lambda_{0} $, remaining to be less than $ P_{\rm mod} $.
-As was shown by the calculations, the relation $ P_{\rm fs} \simeq P_{\rm mod} $ is justified for the power scattered to free space for each value of $ L $.
-Thus, most of the radiated power goes to the negative $ z $-axis direction by means of the eigenmode waves.
-%coincide with graphical accuracy with $ P_{\rm cs} $ and is not shown in Fig.~\ref{fig_P_from_L} .
-%these powers  and coincide on the plot with graphical accuracy.
-%It is also seen in Fig.~\ref{fig_P_from_L}, that 
+It is seen in Fig.~\ref{fig_P_from_L} that the inequality $ P_{\rm mod}\gg P_{\rm cs} $ holds for the chosen parameters.
+The power $ P_{\rm cs} $ carried by the continuous-spectrum waves increases notably at certain values of $ L/\lambda_{0} $, remaining to be less than $ P_{\rm mod} $.
+As was shown by the calculations, the relation $ P^{(+)} \simeq P_{\rm cs} $ is valid for the power going to the region $ z>0 $ for each value of $ L $.
+Thus, the most of the radiated power goes to the discrete-spectrum waves. Those of them that propagate in the positive $ z $-axis direction are almost entirely reflected from the cylinder end.
+Note that the total radiated power $ P_{\Sigma}=P_{\rm mod}+ P_{\rm cs}+P^{(+)}  $ can change with varying $ L $ because of the interference of the excited and reflected waves.
 
-The distributions of the partial powers $P_n$ over the discrete-spectrum waves (for only the first $ 75 $ eigenmodes for which $ p_{n}<200 $) are shown in Figs.~\ref{fig_P_mod}(a) and \ref{fig_P_mod}(b) for two values of $ L/\lambda_{0} $.
+The partial powers $P_n$ going to the discrete-spectrum waves (for the first $ 75 $ eigenmodes for which $ p_{n}<200 $) are shown in Figs.~\ref{fig_P_mod}(a) and \ref{fig_P_mod}(b) for two values of $ L/\lambda_{0} $.
 \begin{figure}[tbp]
 	\centering
-	\includegraphics[width=75mm]{figures/fig_P_mod.eps}
-	\caption{The normalized partial powers $P_n$ for the individual eigenmodes with the radial indices $ n $ and the longitudinal wave numbers $ p_n $ for $ L=0.423\lambda_{0} $ (a) and $ L=0.697\lambda_{0} $ (b). The same parameters as in Fig.~\ref{fig_P_from_L}.}
+	\includegraphics[width=73mm]{figures/fig_P_mod.eps}
+	\caption{The normalized partial powers $P_n$ for the individual eigenmodes with the radial indices $ n $ and the longitudinal wave numbers $ p_n $ for $ L=0{.}423\lambda_{0} $ (a) and $ L=0{.}697\lambda_{0} $ (b). Same parameters as in Fig.~\ref{fig_P_from_L}.}
 	\label{fig_P_mod}
 \end{figure}
-%In both the cases, the most efficient excitation is observed for the modes with $ p_{n}<? $.
-In the case presented in Fig.~\ref{fig_P_mod}(a), the ratio of the power going to the discrete-spectrum waves to the power going to the continuous spectrum waves amounts its minimum $ P_{\rm mod}/(P_{\rm cs}+P_{\rm fs})=3{.}028 $ at $ L=0{.}423\lambda_{0} $.
+In the case presented in Fig.~\ref{fig_P_mod}(a), the ratio of the powers going to the discrete- and continuous-spectrum waves amounts to its minimum value $ P_{\rm mod}/(P_{\rm cs}+P^{(+)})\simeq3 $ at $ L=0{.}423\lambda_{0} $.
 The corresponding value of $ L/\lambda_{0} $ is indicated by the vertical dashed line in Fig.~\ref{fig_P_from_L}.
-The ratio of the powers changes periodically with increasing $ L $ and reaches one of its maximum values $ P_{\rm mod}/(P_{\rm cs}+P_{\rm fs})=2\cdot10^{3} $ at $ L=0{.}696\lambda_{0} $.
-For this case, the distribution of $P_n$ over the set of the eigenwaves is presented in Fig.~\ref{fig_P_mod}(b).
-It follows from the comparison of the panels (a) and (b) in Fig.~\ref{fig_P_mod} that the notable redistribution of the partial powers over the eigenmode spectrum occurs when the parameter $ L/\lambda_{0} $ changes.
+The ratio of the powers changes periodically with increasing $ L $ and reaches one of its maximum values $ P_{\rm mod}/(P_{\rm cs}+P^{(+)})\simeq2\times10^{3} $ at $ L=0{.}697\lambda_{0} $.
+In this case, the quantities $P_n$ are presented in Fig.~\ref{fig_P_mod}(b).
+It follows from comparison of Figs.~\ref{fig_P_mod}(a) and \ref{fig_P_mod}(b) that a notable redistribution of the partial powers over the spatial spectrum occurs when the parameter $ L/\lambda_{0} $ varies.
 
-%\subsection{Figures}
-%Figures should include a caption beneath the figure (in Times Roman 10 pt.)
-%and the caption should include the Figure number in
-%bold. Figure~\ref{fig:asc} provides an example.
-
-%\begin{figure}[htbp]
-%  \centering
-%  \includegraphics[width=70mm]{ascension_island}
-%  \caption{Ascension Island (7.9\textdegree S, 14.8\textdegree W showing
-%    the ESA Tracking Station which was the location of the fixed receiver
-%    and the road (shown in black) along which the mobile measurements were
-%    made).}
-%  \label{fig:asc}
-%\end{figure}
-
-%\subsection{Tables}
-%Likewise, tables should include a caption (in Times Roman 10 pt.) but this
-%time above the table. The caption should include the table number in bold.
+{\enlargethispage{-0.12in}}
 
 \section{Conclusions}
 In this work, the electromagnetic wave excitation has been studied in the case where the nonsymmetric given source is placed on the surface of a semi-infinite cylinder filled with a magnetoplasma.
-The integral equations for the field expansion coefficients of waves diffracted from the endface of the cylinder have been derived and numerically solved.
-The partial powers going to the discrete- and continuous-spectrum waves as functions of the distance from the antenna to the cylinder endface have been analysed. 
-It has been demonstrated that in the considered frequency range almost all the radiated power goes to the eigenmodes, reflecting from the endface.
-It has also been established that the part of the power that goes to the continuous-specrtum waves noticeably depends on the source position.
-%The obtained results can be expanded to the case of any hyperbolic medium.
+The integral equations for the field expansion coefficients of the waves diffracted by the end of the cylinder have been derived and numerically solved.
+The partial powers going to the discrete- and continuous-spectrum waves as functions of the distance from the antenna to the cylinder end have been analyzed. 
+It has been demonstrated that in the whistler frequency range, almost all the radiated power goes to the eigenmodes, which are then reflected from the cylinder end.
+It has also been established that the distribution of the radiated power over the spatial spectrum of excited waves noticeably depends on the source position.
 
 \section{Acknowledgements}
 
 This work was supported by the Russian Science Foundation (project No.~18--72--10046).
 
 \begin{thebibliography}{99}
-\bibitem{Chen_review_2015} F. F. Chen, ``Helicon Discharges and Sources: A Review,'' \emph{Plasma Sources Science \& Technology}, \textbf{24}, p.~014001, January 2015, doi: 10.1088/0963-0252/24/1/014001.
+\bibitem{Chen_review_2015} F. F. Chen, ``Helicon Discharges and Sources: A Review,'' \emph{Plasma Sources Science and Technology}, \textbf{24}, p.~014001, January 2015, doi: 10.1088/0963-0252/24/1/014001.
 
 \bibitem{Caneses_Blackwell} J.\,F.~Caneses, B.\,D.~Blackwell, and P.~Piotrowicz, ``Helicon Antenna Radiation Patterns in a High-Density Hydrogen Linear Plasma Device,'' \emph{Physics of Plasmas}, \textbf{24}, 11, November 2017, p.~113513, doi: 10.1063/1.5000848.
 
@@ -402,27 +288,11 @@ W.\,E.~Amatucci, D.\,D.~Blackwell, E.\,M.~Tejero, C.\,D.~Cothran, L.\,Rudakov, G
 
 \bibitem{OstafEskin_APRASC2019} O.\,M.\,Ostafiychuk, V. A. Es'kin, and A. V. Kudrin, ``Electromagnetic Wave Excitation by a Nonsymmetric Antenna Located on the Surface of an Open Gyrotropic Cylindrical Waveguide,'' \emph{Proceedings of 2019 URSI AP-RASC}, March 2019, pp. 1--4, doi:  10.23919/URSIAP-RASC.2019.8738518.
 	
-%\bibitem{OstafEskin_ICEAA2019} O. M. Ostafiychuk, V. A. Es'kin, and A. V. Kudrin, ``Radiation of Electromagnetic Waves from a Nonsymmetric Antenna Located on the Surface of an Open Gyrotropic Cylindrical Waveguide,'' \emph{Proceedings of ICEAA 2019}, September 2019, pp. 0129--0132, doi: 10.1109/ICEAA.2019.8879420.
-
 \bibitem{Kondrat'ev1999} I.\,G.~Kondrat'ev, A.\,V.~Kudrin, and T.\,M.\,Za\-bo\-ron\-ko\-va,
-\emph{Electrodynamics of Density Ducts in Magnetized Plasmas}, Amsterdam, The Netherlands: Gordon and
+\emph{Electrodynamics of Density Ducts in Magnetized Plasmas}, Amsterdam: Gordon and
 Breach, 1999.
 	
-%\bibitem{cannon} P. S. Cannon, ``Extreme Space Weather --- A Report
-%  Published by the UK Royal Academy of Engineering,'' \emph{Space Weather},
-%  \textbf{11}, 4, April 2013, pp. 138--139, doi:10.1002/swe.20032.
-%\bibitem{mannix} C. R. Mannix, D. P. Belcher, P. S. Cannon, and
-%  M. J. Angling, ``Using GNSS Signals as a Proxy for SAR Signals:
-%  Correcting Ionospheric Defocusing,'' \emph{Radio Science}, \textbf{51},
-%  2, February 2016, pp. 60--70, doi: 10.1002/2015RS005822.
 \end{thebibliography}
 
-%\section{Export}
-%All submissions will be electronic and in a PDF format (*.pdf) and all
-%fonts must be embedded in the submitted PDF document.
-
-%Embedded Type 1 or True Type fonts are required in the submitted PDF file
-%as subset fonts. Type 3 fonts (bitmaps) will not be accepted. Additional
-%information on PDF creation is available on the submission Web site.
 
 \end{document}
