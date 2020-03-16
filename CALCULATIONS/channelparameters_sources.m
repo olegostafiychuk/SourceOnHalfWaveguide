@@ -210,11 +210,11 @@ HH = EE_0* ones(size(w0));
 end
 
 
-P  = sqrt(EE - GG);
+P  = sqrt(EE - GG)
 Pc  = sqrt(EE - ((EE + HH).* GG.^2).* (EE - HH).^(-2)  +...
-         2 * ((EE - HH).^(-2)).* sqrt((EE.* HH.* GG.^2).* (GG.^2 - (EE - HH).^2)));
+         2 * ((EE - HH).^(-2)).* sqrt((EE.* HH.* GG.^2).* (GG.^2 - (EE - HH).^2)))
      
 Pb  = sqrt(EE - ((EE + HH).* GG.^2).* (EE - HH).^(-2)  -...
-         2 * ((EE - HH).^(-2)).* sqrt((EE.* HH.* GG.^2).* (GG.^2 - (EE - HH).^2)));
+         2 * ((EE - HH).^(-2)).* sqrt((EE.* HH.* GG.^2).* (GG.^2 - (EE - HH).^2)))
 
 

@@ -21,6 +21,7 @@ if(strcmp(typeOfCylinder, 'Isotropic'))
 elseif(strcmp(typeOfCylinder, 'Gyrotropic'))
     p_n__of_descreteMode_of_gyrotropicCyl
     p_n = p_n(1:20);
+    p_n(7:end) = -p_n(7:end);
 end
 
 % p_n_losses;%этот скрипт подт€гивает значени€ продольных волновых чисел и столбец столкновений из файла disperson_losses_m1.mat
@@ -44,10 +45,19 @@ N = 1600;
 
 
 %%%%%% NEW INTEGRATION METHOD %%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%% low-hybrid frequency range
 N = 80;        %%% must be even
 N_upper = 400; %%% must be even
 upper_Bound = 32000;
 q_n0 = [2; 20; 800; 16000];
+
+
+%%%%% upper-hybrid frequency range
+N = 80;        %%% must be even
+N_upper = 40; %%% must be even
+upper_Bound = 8;
+q_n0 = [2; 4];
 [dq_simp, q_cs, p_cs] = quadratureMethod_forIntegralEqs_multipleIntervals('difficult_simpsonMarkovGildendurgExpWithCollisions', N, N_upper, q_n0, 1e-8, upper_Bound);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

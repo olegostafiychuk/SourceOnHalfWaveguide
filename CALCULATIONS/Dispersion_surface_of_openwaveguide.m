@@ -25,15 +25,15 @@ clc
 m = 1;
 
 
-eps = 2;
+eps = 3;
 y0  = 0;
-x0  = 0;
-xmin =  0.1;
-xmax =  2;
-ymin =  -0.8;
-ymax =  0.8;
-Npntx = 500;
-Npnty = 500;
+x0  = 3;
+xmin =  x0 - eps;
+xmax =  x0 + eps;
+ymin =  y0 - eps;
+ymax =  y0 + eps;
+Npntx = 100;
+Npnty = 100;
 
 
 systemParameters
