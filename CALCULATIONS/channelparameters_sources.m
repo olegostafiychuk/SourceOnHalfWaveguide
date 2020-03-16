@@ -1,9 +1,8 @@
-function [EE, GG, HH, c] = channelparameters_sources(H0, typeOfmedia, w, d, EE_0)
+function [EE, GG, HH, c] = channelparameters_sources(H0, typeOfmedia, w, d, EE_0, n_e, Nu_e)
 
 %%%%%%%% for ionosphere %%%%%%%%%%%%%%%%
 % plasma chanel parameters:
 if(strcmp(typeOfmedia, 'Plasma'))
-n_e = 1e6;
 % w_H = 1.7e7 * H0;
 % w_p = 5.5e4*(n_e)^(1/2);
 
@@ -11,10 +10,10 @@ c = 3e10;   % velocity of light
 e_0 = 4.8e-10;
 m_e = 9.1e-28;
 
-n_e = 1e13; % концентрация электронов
+% n_e = 1e13; % концентрация электронов
 % n_e = 3e12;
 
-a_0 = 2.5;
+%a_0 = 2.5;
 w_H = (e_0 * H0) / (m_e * c);
 w_p = sqrt(4 * pi * e_0^2 * n_e / m_e);
 
@@ -29,15 +28,15 @@ O_H = w_H * m_e / M_Ar;
 % Par = 1;
 % c = 3e10;   % velocity of light
 
-Nu_e = 0.0 *w_H;
+%Nu_e = 0.0 *w_H;
 Nu_i = 0;
 w_LH = w_H * sqrt((O_p^2 + O_H^2) / (w_p^2 + w_H^2));
 w_UH = sqrt(w_p^2 + w_H^2);
 
 w_0 = w;
-EE = (w_0.^2 - w_UH.^2).* (w_0.^2 - w_LH.^2).*...
-            ((w_0.^2  - w_H^2).* (w_0.^2 - O_H^2)).^(-1) -...
-            w_p.^2 * i*Nu_e./ ((w_H^2 - w_0.^2).* w_0);
+% EE = (w_0.^2 - w_UH.^2).* (w_0.^2 - w_LH.^2).*...
+%             ((w_0.^2  - w_H^2).* (w_0.^2 - O_H^2)).^(-1) -...
+%             w_p.^2 * i*Nu_e./ ((w_H^2 - w_0.^2).* w_0);
         
 %%%%% EE при учете потерь
 EE = 1 + w_p.^2 * (w_0 - 1i*Nu_e)./ ((w_H.^2 - (w_0 - 1i*Nu_e).^2).* w_0) +...
@@ -50,9 +49,9 @@ HH = 1 - w_p.^2./ ((w_0 - 1i*Nu_e).* w_0) - O_p.^2./ ((w_0).* w_0);
 
 
 Pcin  = sqrt(EE - ((EE + HH).* GG.^2).* (EE - HH).^(-2)  +...
-         2 * ((EE - HH).^(-2)).* sqrt((EE.* HH.* GG.^2).* (GG.^2 - (EE - HH).^2)))
+         2 * ((EE - HH).^(-2)).* sqrt((EE.* HH.* GG.^2).* (GG.^2 - (EE - HH).^2)));
     %prop.cnst for conic refr. waves
-Pin=sqrt(EE-GG)
+Pin=sqrt(EE-GG);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

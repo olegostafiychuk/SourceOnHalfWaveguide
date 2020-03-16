@@ -174,6 +174,11 @@ switch(typeOfCylinder)
           JM1(abs(imag(q1.* a_0.* k_0))>300) = besselj(m+1, 1i*300);
           Jm1(abs(imag(q1.* a_0.* k_0))>300) = besselj(m,   1i*300);
           
+          %%%%% added by Oleg Ostafiychuk %%%%%%%%%%%
+          JMM2(abs(imag(q2.* a_0.* k_0))>300) = besselj(m+2, 1i*300);
+          JM2(abs(imag(q2.* a_0.* k_0))>300) = besselj(m+1, 1i*300);
+          Jm2(abs(imag(q2.* a_0.* k_0))>300) = besselj(m,   1i*300);
+          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
           
           
           M10 =(a_0./ ((k_0*q1).^2 - (k_0*tq).^2)).*...

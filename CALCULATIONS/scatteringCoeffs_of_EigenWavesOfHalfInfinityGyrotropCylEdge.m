@@ -272,6 +272,12 @@ switch(typeOfCylinder)
             JM1(abs(imag(q1.* a_0.* k_0))>300) = besselj(m+1, 1i*300);
             Jm1(abs(imag(q1.* a_0.* k_0))>300) = besselj(m,   1i*300);
             
+            %%%%% added by Oleg Ostafiychuk%%%%
+            JMM2(abs(imag(q2.* a_0.* k_0))>300) = besselj(m+2, 1i*300);
+            JM2(abs(imag(q2.* a_0.* k_0))>300) = besselj(m+1, 1i*300);
+            Jm2(abs(imag(q2.* a_0.* k_0))>300) = besselj(m,   1i*300);
+            %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+            
             [q1_min, q2_min, n1_min, n2_min, alp1_min, alp2_min, bet1_min, bet2_min] = term_of_gyrotropic_waveguide(EE1, -GG1, HH1, p);
             JM0_min    = besselj(-m+1, (q.* a_0).* k_0);                            
             JM1_min    = besselj(-m+1, (q1_min.* a_0).* k_0);
@@ -286,6 +292,13 @@ switch(typeOfCylinder)
             JMM1_min(abs(imag(q1_min.* a_0.* k_0))>300) = besselj(m+2, 1i*300);
             JM1_min(abs(imag(q1_min.* a_0.* k_0))>300) = besselj(m+1, 1i*300);
             Jm1_min(abs(imag(q1_min.* a_0.* k_0))>300) = besselj(m,   1i*300);
+            
+            %%%%%%%added by Oleg Ostafiychuk%%%%%%%%%%
+            JMM2_min(abs(imag(q2_min.* a_0.* k_0))>300) = besselj(m+2, 1i*300);
+            JM2_min(abs(imag(q2_min.* a_0.* k_0))>300) = besselj(m+1, 1i*300);
+            Jm2_min(abs(imag(q2_min.* a_0.* k_0))>300) = besselj(m,   1i*300);
+            %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+            
             for iq = 1:size(q,2)
 %                 K_beta1PL_alphEMin(iq,:) = q(iq).* K_core_speedy_gyro(typeOfCylinder, q, p, psi_forward_1, m, H2m, dH2m, H1m, dH1m,...
 %                                                  q(iq), p(iq), -m,...
@@ -446,7 +459,6 @@ for iqn = 1:size(q_n,1)
     [b_p_1_delta_forw, b_p_2_delta_forw, psi_delta_1, psi_delta_2,...
         B_1_delta_1,B_2_delta_1,Cm2_delta_1,  Dm2_delta_1,...
         B_1_delta_2,B_2_delta_2,Cm2_delta_2,  Dm2_delta_2] = coefficientsOf_deltaFunctionWave(typeOfCylinder, q_n(iqn), p_n(iqn), k_0, k_0, a_0, EE1, GG1, HH1, MU1, EE, MU, m, AE_0, AH_0);
-    
     
     K_beta0PL_alphEMin = K_beta0PL_alphEMin +...
                      -(q.* K_core(typeOfCylinder, q_n(iqn), p_n(iqn), psi_delta_1, m, H2m0, dH2m0, H1m0, dH1m0,...

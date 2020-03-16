@@ -16,17 +16,18 @@
 % --------   ---       ----------------------------------------------------------
 % 27/01/20016 Vasiliy Es'kin   Create programma.
 % ==========================================================================*/
-function [z, Q1, Q2, Q] = dispeq_gyrotropic_cylinder(pp, m, EE, GG, HH, k_0, a_0)
+function [z, Q1, Q2, Q] = dispeq_gyrotropic_cylinder(p, m, EE, GG, HH, k_0, a_0)
 
 % global m R EE GG HH ee R_psi k_0 a_0
 
-p = pp;
+%p = pp(1) + pp(2);
 
     mainq = EE.^2 - GG.^2 + EE.* HH - (HH + EE).* p.^2;
     radq = sqrt((HH - EE).^2 * p.^4 + 2 * ((GG.^2).* (HH + EE) - EE.* (HH - EE).^2) * p.^2 +...
         (EE.^2 - GG.^2 - EE.* HH).^2);
     q1 = sqrt(0.5 * (mainq - radq)./ EE);
     q2 = sqrt(0.5 * (mainq + radq)./ EE);
+    
 
     n1 = -(EE.* (p.* GG).^(-1)).* (p.^2 + q1.^2 + (GG.^2)./ EE - EE);
     n2 = -(EE.* (p * GG).^(-1)).* (p.^2 + q2.^2 + (GG.^2)./ EE - EE);
@@ -100,7 +101,7 @@ p = pp;
     aa44 = Hz_sct1;
 % %%%%%%%%%%%s%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % %%% product decomposition of matrix
-zz = abs(aa14.* aa23.* aa32.* aa41 - aa13.* aa24.* aa32.* aa41 -...
+zz =     aa14.* aa23.* aa32.* aa41 - aa13.* aa24.* aa32.* aa41 -...
          aa14.* aa22.* aa33.* aa41 + aa12.* aa24.* aa33.* aa41 +...
          aa13.* aa22.* aa34.* aa41 - aa12.* aa23.* aa34.* aa41 -...
          aa14.* aa23.* aa31.* aa42 + aa13.* aa24.* aa31.* aa42 +...
@@ -111,9 +112,9 @@ zz = abs(aa14.* aa23.* aa32.* aa41 - aa13.* aa24.* aa32.* aa41 -...
          aa12.* aa21.* aa34.* aa43 - aa11.* aa22.* aa34.* aa43 -...
          aa13.* aa22.* aa31.* aa44 + aa12.* aa23.* aa31.* aa44 +...
          aa13.* aa21.* aa32.* aa44 - aa11.* aa23.* aa32.* aa44 -...
-         aa12.* aa21.* aa33.* aa44 + aa11.* aa22.* aa33.* aa44);
+         aa12.* aa21.* aa33.* aa44 + aa11.* aa22.* aa33.* aa44;
 
      
-z = zz;
+z = zz.*conj(zz);
 
 
