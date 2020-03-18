@@ -209,10 +209,10 @@ switch(typeOfCylinder)
             JM1(abs(imag(Q1))>300) = besselj(m+1, 1i*300);
             Jm1(abs(imag(Q1))>300) = besselj(m, 1i*300);
             
-            %%%% added by Oleg Ostafiychuk %%%%%%
-            JM2(abs(imag(Q2))>300) = besselj(m+1, 1i*300);
-            Jm2(abs(imag(Q2))>300) = besselj(m, 1i*300);
-            %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+            %%%%% added by Oleg Ostafiychuk %%%%%%
+            %JM2(abs(imag(Q2))>300) = besselj(m+1, 1i*300);
+            %Jm2(abs(imag(Q2))>300) = besselj(m, 1i*300);
+            %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
             
             Jm1_Q1 = Jm1./ Q1;
             Jm2_Q2 = Jm2./ Q2;
@@ -275,11 +275,11 @@ switch(typeOfCylinder)
             B2 = B2./ Dm;
             Cm2= Cm2./Dm;
             Dm = Dm./ Dm;
-% 
-% %             B1 = B1./ Cm2;
-% %             B2 = B2./ Cm2;
-% %             Cm2= Cm2./Cm2;
-% %             Dm = Dm./ Cm2;
+
+%             B1 = B1./ Cm2;
+%             B2 = B2./ Cm2;
+%             Dm = Dm./ Cm2;
+%             Cm2= Cm2./Cm2;
 end
     
 % %%%%%%%%%% решаем неоднородную систему линейных уравнений

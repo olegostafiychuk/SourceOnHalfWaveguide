@@ -11,10 +11,9 @@ function [a_p_field_1_forw, a_p_field_1_back, a_p_field_2_forw, a_p_field_2_back
           coeffsOfFieldAndExcitationCoeffs_of_Continues_discreteRepr(typeOfCylinder, q, q_0, k_0, k, a_0, EE1, GG1, HH1, MU1, EE2, MU2, EE, MU, m, z, AE_0, AH_0)
 
   p = sqrt(1-q.^2);
-  p = real(p) - 1i * abs(imag(p));
-  
+  p = p.* (2*(imag(p) <= 0)-1);
   p_0 = sqrt(1-q_0.^2);
-  p_0 = real(p_0) - 1i * abs(imag(p_0));
+  p_0 = p_0.* (2*(imag(p_0) <= 0)-1);
   
   m0 = m;
   
@@ -185,10 +184,10 @@ switch(typeOfCylinder)
             MU1, EE2, MU2, EE, MU, m, z,psi_forward_1_transp, AE_0, AH_0);
                                           
         %%%%% forward waves second type of waves %%%%%%%%%%%%%%%%%%%%%%%%%%%
-        a_p_field_2_forw = a_p_field__ForBesselBeam(typeOfCylinder, q, q_0,  p, k_0, k, a_0, EE1, GG1, HH1,...
+        a_p_field_2_forw = a_p_field__ForBesselBeam_forPsy2(typeOfCylinder, q, q_0,  p, k_0, k, a_0, EE1, GG1, HH1,...
             MU1, EE2, MU2, EE, MU, m, z, psi_backward_2_transp, AE_0, AH_0);
         %%%%% backward waves second type of waves %%%%%%%%%%%%%%%%%%%%%%%%%%%
-        a_p_field_2_back = a_p_field__ForBesselBeam(typeOfCylinder, q, q_0, -p, k_0, k, a_0, EE1, GG1, HH1,...
+        a_p_field_2_back = a_p_field__ForBesselBeam_forPsy2(typeOfCylinder, q, q_0, -p, k_0, k, a_0, EE1, GG1, HH1,...
             MU1, EE2, MU2, EE, MU, m, z, psi_forward_2_transp, AE_0, AH_0);
 end
 

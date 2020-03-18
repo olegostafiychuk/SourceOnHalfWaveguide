@@ -224,7 +224,8 @@ switch(typeOfCylinder)
             
     case 'Gyrotropic'
         p = sqrt(1-q.^2);
-        p = real(p) - 1i * abs(imag(p));
+%         p = real(p) - 1i * abs(imag(p));
+        p = p.* (2*(imag(p) <= 0)-1);
         
         if(p<=1)
         %%% first type of waves

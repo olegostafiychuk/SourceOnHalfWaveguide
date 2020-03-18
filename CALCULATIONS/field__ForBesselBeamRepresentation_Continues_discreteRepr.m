@@ -10,13 +10,22 @@ function component = field__ForBesselBeamRepresentation_Continues_discreteRepr(c
           B_1_forward_2,B_2_forward_2,Cm2_forward_2,  Dm2_forward_2,...
           B_1_backward_2,B_2_backward_2,Cm2_backward_2, Dm2_backward_2)
 
-  p = sqrt(1-q.^2);
-  p = real(p) - 1i * abs(imag(p));
-  
+ p = sqrt(1-q.^2);
+ p = p.* (2*(imag(p) <= 0)-1);
+
   p_0 = sqrt(1-q_0.^2);
-  p_0 = real(p_0) - 1i * abs(imag(p_0));
   
   m0 = m;
+  
+  a_p_field_1_forw = a_p_field_1_forw.* (exp(-1i * k_0 * p * z));
+  a_p_field_2_forw = a_p_field_2_forw.* (exp(-1i * k_0 * p * z));
+  a_p_field_1_back = a_p_field_1_back.* (exp( 1i * k_0 * p * z));
+  a_p_field_2_back = a_p_field_2_back.* (exp( 1i * k_0 * p * z));
+  
+a_p_field_1_forw(isnan(a_p_field_1_forw)) = isnan(a_p_field_1_forw(isnan(a_p_field_1_forw))) * 0;
+a_p_field_2_forw(isnan(a_p_field_2_forw)) = isnan(a_p_field_2_forw(isnan(a_p_field_2_forw))) * 0;
+a_p_field_1_back(isnan(a_p_field_1_back)) = isnan(a_p_field_1_back(isnan(a_p_field_1_back))) * 0;
+a_p_field_2_back(isnan(a_p_field_2_back)) = isnan(a_p_field_2_back(isnan(a_p_field_2_back))) * 0;
   
 switch(typeOfCylinder)
     case 'PerfectConductivity'
@@ -472,7 +481,11 @@ psi2 = psi_forward_2;
             Jm2    = besselj(m, Q2);
             %%%% vary larger JM1 and Jm1
             JM1(abs(imag(Q1))>300) = besselj(m+1, 1i*300);
-            Jm1(abs(imag(Q1))>300) = besselj(m, 1i*300);            
+            Jm1(abs(imag(Q1))>300) = besselj(m, 1i*300);
+%             %%%% vary larger JM2 and Jm2
+%             JM2(abs(imag(Q2))>300) = besselj(m+1, 1i*300);
+%             Jm2(abs(imag(Q2))>300) = besselj(m,   1i*300);
+            
             Jm1_Q1 = Jm1./ Q1;
             Jm2_Q2 = Jm2./ Q2;
             
@@ -624,6 +637,6 @@ psi2 = psi_forward_2;
 end
 
 % component = component.* (exp(1i * k_0 * p * z));  %%%% we consider back waves
-component = component.* (exp(-1i * k_0 * p * z));  %%%% we consider back waves
+% component = component.* (exp(-1i * k_0 * p * z));  %%%% we consider back waves
 
 
