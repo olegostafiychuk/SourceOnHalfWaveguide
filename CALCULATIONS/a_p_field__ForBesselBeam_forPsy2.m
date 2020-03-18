@@ -1,12 +1,12 @@
 %%%%% расчёт коэффициента для волн непрерывного спектра в праямом
 %%%%% направлении (в сторону среды 2)
 %%%%% второе приближение в нахождении коэффициента aplus
-function aplus2 = a_p_field__ForBesselBeam(typeOfCylinder, q, q_0, p, k_0, k, a_0, EE1, GG1, HH1, MU1, EE2, MU2, EE, MU, m, z, psi, AE_0, AH_0)
+function aplus2 = a_p_field__ForBesselBeam_forPsy2(typeOfCylinder, q, q_0, p, k_0, k, a_0, EE1, GG1, HH1, MU1, EE2, MU2, EE, MU, m, z, psi, AE_0, AH_0)
 
 c = 3e10;   % velocity of light
 
-  p_0 = sqrt(1-q_0.^2);
-  p_0 = p_0.* (2*(imag(p_0) <= 0)-1);
+p_0 = sqrt(1-q_0.^2);
+p_0 = real(p_0) - 1i * abs(imag(p_0));
 
 
 % m0 = abs(m);
@@ -257,7 +257,7 @@ switch(typeOfCylinder)
 %          psi = psi1_q__gyrotropic(k_0, k, a_0, EE1, -GG1, HH1, -m, (-p));
         
         [q1, q2, n1, n2, alp1, alp2, bet1, bet2] = term_of_gyrotropic_waveguide(EE1, -GG1, HH1, -p);
-        [B_1, B_2, Cm2, Dm2]  = coefficientsOfContinuousSpectrum(typeOfCylinder, k_0, k, a_0, EE1, -GG1, HH1, MU1, EE, MU, -m, -p, q, psi,  1);
+        [B_1, B_2, Cm2, Dm2]  = coefficientsOfContinuousSpectrum_forPsi2(typeOfCylinder, k_0, k, a_0, EE1, -GG1, HH1, MU1, EE, MU, -m, -p, q, psi,  1);
         %%%%%% norm %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         N_p = -(-1)^m * 8 * (p./ q / k_0).* (Cm2.^2 + Dm2.^2).* psi;
         
@@ -310,10 +310,6 @@ switch(typeOfCylinder)
           JMM1(abs(imag(q1.* a_0.* k_0))>300) = besselj(m+2, 1i*300);
           JM1(abs(imag(q1.* a_0.* k_0))>300) = besselj(m+1, 1i*300);
           Jm1(abs(imag(q1.* a_0.* k_0))>300) = besselj(m,   1i*300);
-          %%%% vary larger JM2 and Jm2
-          %JMM2(abs(imag(q2.* a_0.* k_0))>300) = besselj(m+2, 1i*300);
-          %JM2(abs(imag(q2.* a_0.* k_0))>300) = besselj(m+1, 1i*300);
-          %Jm2(abs(imag(q2.* a_0.* k_0))>300) = besselj(m,   1i*300);
           
           M10 =(a_0./ ((k_0*q1).^2 - (k_0*q_0).^2)).*...
               (k_0*q1.* JMM1.* JM0 - k_0*q_0.* JMM0.* JM1);

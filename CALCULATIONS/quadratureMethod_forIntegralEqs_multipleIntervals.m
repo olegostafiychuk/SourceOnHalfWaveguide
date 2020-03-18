@@ -4,7 +4,7 @@ function [dq_simp, q_back, p] = quadratureMethod_forIntegralEqs_multipleInterval
 switch(method)
     case'difficult_simpsonMarkovGildendurgExpWithCollisions'
     
-    dq = 1e-5;
+    dq = 1e-4;
     
     if(isempty(q_n))
         N1 = 200;
@@ -62,10 +62,11 @@ switch(method)
         dq_simp = dq * [dq1_simp, dq2_simp, dq3_simp, dq4_simp];
         %%%%%%%%%% Simpson formula end
     else
-        N1 = 200;
+        N1 = 400;
 %         dq1 = (1-dq -q_start) / N1;
 %         dq2 = (q_n(1)-(1+dq)) / N1;
-        dq1 = (1-dq -q_start) / N;
+%         dq1 = (1-dq -q_start) / N_upper;
+        dq1 = (1-dq -q_start) / N1;
         dq2 = (q_n(1)-(1+dq)) / N;
         q_back1 = [q_start:dq1:1-dq];
         q_back2 = [1+dq:dq2:q_n(1)];

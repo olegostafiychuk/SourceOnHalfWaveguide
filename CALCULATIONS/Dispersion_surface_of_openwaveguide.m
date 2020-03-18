@@ -25,9 +25,9 @@ clc
 m = 1;
 
 
-eps = 3;
+eps = 1;
 y0  = 0;
-x0  = 3;
+x0  = 1;
 xmin =  x0 - eps;
 xmax =  x0 + eps;
 ymin =  y0 - eps;
@@ -54,7 +54,7 @@ R   = k_0 * a_0;
   
     
 
-[ff1, fval] = fminsearch(@(x) dispeq_gyrotropic_cylinder(x(1) + 1i * x(2), m, EE, GG, HH, k_0, a_0), [1.14 0], optimset('TolX',1e-8))
+[ff1, fval] = fminsearch(@(x) dispeq_gyrotropic_cylinder(x(1) + 1i * x(2), m, EE, GG, HH, k_0, a_0), [0.366 0], optimset('TolX',1e-8))
 %fval
 
 [px,py] = meshgrid(xmin : (xmax - xmin) / Npntx :xmax, ymin : (ymax - ymin) / Npnty :ymax);
@@ -66,6 +66,7 @@ p = px + 1i * py;
 
 %         zz1 = (dispeq_isotropic_cylinder(px + 1i * py));
         zz1 = (dispeq_gyrotropic_cylinder(p, m, EE, GG, HH, k_0, a_0));
+%         zz1 = ((GG1^2 - (p.^2 - EE1).^2));
         zz2 = abs(zz1);
         
         

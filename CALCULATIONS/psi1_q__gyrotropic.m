@@ -40,10 +40,10 @@ function psi = psi1_q__gyrotropic(k_0, k, a_0, EE, GG, HH, m, p, q)
     JM1(abs(imag(Q1))>300) = besselj(m+1, 1i*300);
     Jm1(abs(imag(Q1))>300) = besselj(m,   1i*300);
     
-    %%%% added by Oleg Ostafiychuk%%%%%%
+    %%%%% added by Oleg Ostafiychuk%%%%%%
     JM2(abs(imag(Q2))>300) = besselj(m+1, 1i*300);
     Jm2(abs(imag(Q2))>300) = besselj(m,   1i*300);
-    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
     Jm1_Q1 = Jm1./ Q1;
     Jm2_Q2 = Jm2./ Q2;
@@ -142,9 +142,9 @@ Delta_4 = (Hz_sct.* (-(Ephi1.* Ez2.* Hphi_sctE) + Ephi1.* Ez_sct.* Hphi2 +...
          
 sqrtDelt = sqrt((Delta_4 + Delta_1 - Delta_2).^2 + 4 * Delta_2.* Delta_1);
 % sqrtDelt = sqrtDelt.* (2*(imag(sqrtDelt) <= 0)-1);
-% sqrtDelt = (real(sqrtDelt) + 1i* abs(imag(sqrtDelt)));
-% sqrtDelt = sqrtDelt.* (2*(q <= 1)-1).*...
-%     (sign(real(p))-sign(imag(p))).* (2*(GG <= 0)-1);
+sqrtDelt = (real(sqrtDelt) + 1i* abs(imag(sqrtDelt))); %%% include in the case of absence of collision losses
+sqrtDelt = sqrtDelt.* (2*(q <= 1)-1).*...
+    (sign(real(p))-sign(imag(p))).* (2*(GG <= 0)-1);
 psi = (-(Delta_4 + Delta_1 - Delta_2)+...
     sqrtDelt)./ (2 * Delta_2);
 

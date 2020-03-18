@@ -1,4 +1,4 @@
-function [B1,B2,Cm2, Dm] = coefficientsOfContinuousSpectrum(typeOfCylinder, k_0, k, a_0, EE1, GG1, HH1, MU1, EE, MU, m, p, q, psi, Dm2)
+function [B1,B2,Cm2, Dm] = coefficientsOfDiscreteSpectrum(typeOfCylinder, k_0, k, a_0, EE1, GG1, HH1, MU1, EE, MU, m, p, q, psi, Dm2)
 %%% вычислеяются коэффициенты собственных волн цилиндрического волновода
 %%% (как дискретного, так и непрерывного спектра) от коэффициента Dm2
 %%% (принят в качестве известного)
@@ -13,16 +13,11 @@ switch(typeOfCylinder)
         Q = k_0.* a_0 * q;
         %     Q = Q.* (2*(imag(Q) <= 0)-1); %%% мнимые части S и p должный быть разных знаков
         %     %%% необходимо, чтобы при стремлении аргумента функции Ханкеля к бесконечности сама функция была ограниченной  
-        H2m  = besselh(m, 2, Q);
-        dH2m = (H2m * m)./ Q  - besselh(m + 1, 2, Q);
+            H1m  = 0;
+            dH1m = 0;
             
-            if(psi~=0)
-                H1m  = besselh(m, 1, Q);
-                dH1m = (H1m * m)./ Q  - besselh(m + 1, 1, Q);
-            else
-                H1m  = 0;
-                dH1m = 0;
-            end
+            H2m  = besselh(m, 2, Q);
+            dH2m = (H2m * m)./ Q  - besselh(m + 1, 2, Q);
             
             Jm1    = besselj(m, Q1);
             dJm1    = (m./ Q1).* Jm1 - besselj(m+1, Q1); 
@@ -81,25 +76,11 @@ switch(typeOfCylinder)
             Q = k_0.* a_0 * q;
             %     Q = Q.* (2*(imag(Q) <= 0)-1); %%% мнимые части S и p должный быть разных знаков
             
-            if(psi~=0)
-                JmmQ  = besselj(m, Q);
-                YmmQ  = bessely(m, Q);
-                JMmQ  = besselj(m + 1, Q);
-                YMmQ  = bessely(m + 1, Q);
-                %     %%% необходимо, чтобы при стремлении аргумента функции Ханкеля к бесконечности сама функция была ограниченной 
-                
-                H2m  = JmmQ - 1i * YmmQ;
-                dH2m = (H2m * m)./ Q  - (JMmQ - 1i * YMmQ);
-                
-                H1m  = JmmQ + 1i * YmmQ;
-                dH1m = (H1m * m)./ Q  - (JMmQ + 1i * YMmQ);
-            else
-                H1m  = 0;
-                dH1m = 0;
-                
-                H2m  = besselh(m, 2, Q);
-                dH2m = (H2m * m)./ Q  - besselh(m + 1, 2, Q);
-            end
+            H1m  = 0;
+            dH1m = 0;
+            
+            H2m  = besselh(m, 2, Q);
+            dH2m = (H2m * m)./ Q  - besselh(m + 1, 2, Q);
             
             Jm1    = besselj(m, Q1);
             dJm1    = (m./ Q1).* Jm1 - besselj(m+1, Q1); 
@@ -156,26 +137,12 @@ switch(typeOfCylinder)
             Q = k_0.* a_0 * q;
             %     Q = Q.* (2*(imag(Q) <= 0)-1); %%% мнимые части S и p должный быть разных знаков
             %     %%% необходимо, чтобы при стремлении аргумента функции Ханкеля к бесконечности сама функция была ограниченной  
+
+            H1m  = 0;
+            dH1m = 0;
             
-            if(psi~=0)
-                JmmQ  = besselj(m, Q);
-                YmmQ  = bessely(m, Q);
-                JMmQ  = besselj(m + 1, Q);
-                YMmQ  = bessely(m + 1, Q);
-                %     %%% необходимо, чтобы при стремлении аргумента функции Ханкеля к бесконечности сама функция была ограниченной 
-                
-                H2m  = JmmQ - 1i * YmmQ;
-                dH2m = (H2m * m)./ Q  - (JMmQ - 1i * YMmQ);
-                
-                H1m  = JmmQ + 1i * YmmQ;
-                dH1m = (H1m * m)./ Q  - (JMmQ + 1i * YMmQ);
-            else
-                H1m  = 0;
-                dH1m = 0;
-                
-                H2m  = besselh(m, 2, Q);
-                dH2m = (H2m * m)./ Q  - besselh(m + 1, 2, Q);
-            end
+            H2m  = besselh(m, 2, Q);
+            dH2m = (H2m * m)./ Q  - besselh(m + 1, 2, Q);
             
             mainq = EE1.^2 - GG1.^2 + EE1.* HH1 - (HH1 + EE1).* p.^2;
             radq = sqrt((HH1 - EE1).^2 * p.^4 + 2 * ((GG1.^2).* (HH1 + EE1) - EE1.* (HH1 - EE1).^2) * p.^2 +...
@@ -201,14 +168,9 @@ switch(typeOfCylinder)
             JM2    = besselj(m+1, Q2);
             Jm1    = besselj(m, Q1);
             Jm2    = besselj(m, Q2);
-            %%%% vary larger JM1 and Jm1
+%             %%%% vary larger JM1 and Jm1
             JM1(abs(imag(Q1))>300) = besselj(m+1, 1i*300);
             Jm1(abs(imag(Q1))>300) = besselj(m, 1i*300);
-            
-            %%%%% added by Oleg Ostafiychuk %%%%%%
-            %JM2(abs(imag(Q2))>300) = besselj(m+1, 1i*300);
-            %Jm2(abs(imag(Q2))>300) = besselj(m, 1i*300);
-            %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
             
             Jm1_Q1 = Jm1./ Q1;
             Jm2_Q2 = Jm2./ Q2;
@@ -265,10 +227,12 @@ switch(typeOfCylinder)
                 M11.* R2.* M32 - M12.* M21.* R3 + M11.* M22.* R3);
             
             
-            B1 = B1./ Dm;
-            B2 = B2./ Dm;
-            Cm2= Cm2./Dm;
-            Dm = Dm./ Dm;
+            if(Dm ~= 0)
+                B1 = B1./ Dm;
+                B2 = B2./ Dm;
+                Cm2= Cm2./Dm;
+                Dm = Dm./ Dm;
+            end
 
 % %             B1 = B1./ Cm2;
 % %             B2 = B2./ Cm2;
