@@ -1,5 +1,5 @@
 clearvars
-clc
+% clc
 
 tic
 systemParameters
@@ -65,10 +65,10 @@ q_n0 = [2; 4];
 
 
 
-upper_Bound = 31;
-N = 40;         %%% must be even
-N_upper = 200;  %%% must be even
-q_n00 = sort(real(q1));
+upper_Bound = 30;
+N = 20;         %%% must be even
+N_upper = 400;  %%% must be even
+q_n00 = sort(real(q1(1:30)));
 q_n00 = [1.035; 1.134; q_n00(1); q_n00(3); q_n00(5); q_n00(7:end)];
 stepQ = 0.01;
 q_n0 = [];
@@ -136,8 +136,8 @@ a_cs_alfa2_forw(isinf(a_cs_alfa2_forw)) = 0;
 a_cs_alfa1_forw(isnan(a_cs_alfa1_forw)) = 0;
 a_cs_alfa2_forw(isnan(a_cs_alfa2_forw)) = 0;
 
-a_cs_alfa1_forw(interalQ) = 0*a_cs_alfa1_forw(interalQ);
-a_cs_alfa2_forw(interalQ) = 0*a_cs_alfa2_forw(interalQ);
+% a_cs_alfa1_forw(interalQ) = 0*a_cs_alfa1_forw(interalQ);
+% a_cs_alfa2_forw(interalQ) = 0*a_cs_alfa2_forw(interalQ);
 
 % a_cs_alfa1_forw = 0*a_cs_alfa1_forw;
 % a_cs_alfa2_forw = 0*a_cs_alfa2_forw;

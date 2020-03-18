@@ -62,13 +62,16 @@ switch(method)
         dq_simp = dq * [dq1_simp, dq2_simp, dq3_simp, dq4_simp];
         %%%%%%%%%% Simpson formula end
     else
-        N1 = 400;
+        N1 = 200;
 %         dq1 = (1-dq -q_start) / N1;
 %         dq2 = (q_n(1)-(1+dq)) / N1;
 %         dq1 = (1-dq -q_start) / N_upper;
-        dq1 = (1-dq -q_start) / N1;
-        dq2 = (q_n(1)-(1+dq)) / N;
-        q_back1 = [q_start:dq1:1-dq];
+        q0  = 0.9; 
+        dq0 = (q0-dq -q_start) / N1;
+        dq1 = (1-dq -(q0+dq)) / N1;
+        dq2 = (q_n(1)-(1+dq)) / N1;        
+        q_back0 = [q_start:dq0:q0-dq];
+        q_back1 = [q0+dq:dq1:1-dq];
         q_back2 = [1+dq:dq2:q_n(1)];
         
         dq1_simp = ones(size(q_back1,2),1)';
@@ -76,17 +79,19 @@ switch(method)
         dq1_simp(2:2:end) = 4;
         dq1_simp(1) = 1;
         dq1_simp(size(q_back1,2)) = 1;
+        dq0_simp = dq1_simp;
         dq2_simp = ones(size(q_back2,2),1)';
         dq2_simp(1:2:end) = 2;
         dq2_simp(2:2:end) = 4;
         dq2_simp(1) = 1;
         dq2_simp(size(q_back2,2)) = 1;
         
-        q_back = [q_back1, q_back2];
+        q_back = [q_back0, q_back1, q_back2];
         dqq = 1/3;
+        dq0_simp = dq0_simp.* dq0;
         dq1_simp = dq1_simp.* dq1;
         dq2_simp = dq2_simp.* dq2;
-        dq_simp = dqq * [dq1_simp, dq2_simp];
+        dq_simp = dqq * [dq0_simp, dq1_simp, dq2_simp];
         
         
         dq2 = dq;
@@ -106,7 +111,7 @@ switch(method)
 %             dq2 = dq3; 
         end
         
-        dq4 = (q_n(end) - dq2 - (q_n(end-1) + dq2)) / N_upper;
+        dq4 = (q_n(end) - dq2 - (q_n(end-1) + dq2)) / N;
         q_back4 = [q_n(end-1) + dq2:dq4:q_n(end) - dq2];
         dq4_simp = ones(size(q_back4,2),1)';
         dq4_simp(1:2:end) = 2;

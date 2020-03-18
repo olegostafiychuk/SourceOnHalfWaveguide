@@ -16,8 +16,8 @@ d = 4*a_0;
 % d = 2 * pi / k_0 / 100;
 % d = a_0;
 j_f = 1e7 / (2 * d);
-j_z = 5*j_f;
-% j_z = 2e6 / (2 * pi * a_0);
+% j_z = 5*j_f;
+j_z = 2e6 / (2 * pi * a_0);
 I_0 = sqrt((j_z * 2 * pi * a_0)^2 + (j_f * 2 * d)^2);
 %L     = - 2 * pi / k_0 * 2; %%% z coordinate of center of source
 
