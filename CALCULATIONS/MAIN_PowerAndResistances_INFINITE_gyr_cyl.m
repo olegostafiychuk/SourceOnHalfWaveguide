@@ -17,9 +17,9 @@ if(strcmp(typeOfCylinder, 'Isotropic'))
 elseif(strcmp(typeOfCylinder, 'Gyrotropic'))
 %     p_n__of_descreteMode_of_gyrotropicCyl
     p_n__of_descreteMode_of_gyrotropicCyl
+    p_n = p_n(1:20);
+    p_n = -p_n(7:end);
 end
-% p_n = p_n(real(p_n) < 1000);
-p_n = p_n(1:100);
 
 q_n = sqrt(1-p_n.^2);
 q_n = q_n.* (2*(imag(q_n) <= 0)-1);
