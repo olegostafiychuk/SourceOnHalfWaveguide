@@ -2,7 +2,7 @@ function [a_p_field_1_forw, a_p_field_2_forw, psi_forward_1, psi_forward_2,...
     B_1_forward_1,B_2_forward_1,Cm2_forward_1,  Dm2_forward_1,...
     B_1_forward_2,B_2_forward_2,Cm2_forward_2,  Dm2_forward_2] = coefficientsOf_deltaFunctionWave(typeOfCylinder, q, p, k_0, k, a_0, EE1, GG1, HH1, MU1, EE, MU, m, AE_0, AH_0)
 
-if(abs(p)<=1 && imag(q)== 0)
+if(abs(real(p))<=1 && imag(q)== 0)
         %%% first type of waves
         if(strcmp(typeOfCylinder, 'Isotropic'))
             psi_forward_1  = psi1_q(k_0, k, a_0, EE1, MU1, EE, MU, m,   p, q);
