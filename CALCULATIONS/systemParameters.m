@@ -4,11 +4,9 @@ w = 0;
 channelparameters;
 
 %%% parameters of the source
-% w_0 = 0.025 * w_H;
-w_0 = 0.995 * w_UH;
-% w_0 = 0.022 * w_H;
-% w_0    = 0.01 * w_H;
-% w_0    = 0.002 * w_H;
+w_0 = 0.025 * w_H;
+% w_0 = 0.995 * w_UH;
+
 p_0 = 0;
 m = 1;
 k_0 = w_0 / c;

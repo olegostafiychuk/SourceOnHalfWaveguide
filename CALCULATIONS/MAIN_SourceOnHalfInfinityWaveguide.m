@@ -20,8 +20,8 @@ if(strcmp(typeOfCylinder, 'Isotropic'))
     p_n__of_descreteMode_of_isotropicCyl
 elseif(strcmp(typeOfCylinder, 'Gyrotropic'))
     p_n__of_descreteMode_of_gyrotropicCyl
-%     p_n = p_n(1:40);
-    p_n(7:end) = -p_n(7:end);
+%     p_n = p_n(1:31);
+%     p_n(7:end) = -p_n(7:end);
 end
 [q1, q2, n1, n2, alp1, alp2, bet1, bet2] = term_of_gyrotropic_waveguide(EE1, GG1, HH1, p_n);
 % figure(111);
@@ -50,37 +50,36 @@ N = 1600;
 %%%%%% NEW INTEGRATION METHOD %%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%% low-hybrid frequency range
-N = 80;        %%% must be even
+N = 160;       %%% must be even
 N_upper = 400; %%% must be even
 upper_Bound = 32000;
 q_n0 = [2; 20; 800; 16000];
 
 
 %%%%% upper-hybrid frequency range
-N = 100;       %%% must be even
-N_upper = 400; %%% must be even
-upper_Bound = 41;
-q_n0 = [2; 4];
+% N = 100;       %%% must be even
+% N_upper = 400; %%% must be even
+% upper_Bound = 41;
+% q_n0 = [2; 4];
+
 [dq_simp, q_cs, p_cs] = quadratureMethod_forIntegralEqs_multipleIntervals('difficult_simpsonMarkovGildendurgExpWithCollisions', N, N_upper, q_n0, 1e-8, upper_Bound);
 
-
-
-upper_Bound = 30;
-N = 20;         %%% must be even
-N_upper = 400;  %%% must be even
-q_n00 = sort(real(q1(1:30)));
-q_n00 = [1.035; 1.134; q_n00(1); q_n00(3); q_n00(5); q_n00(7:end)];
-stepQ = 0.01;
-q_n0 = [];
-for iq0 = 1:5
-    q_n0 = [q_n0; q_n00(iq0)-stepQ; q_n00(iq0); q_n00(iq0)+stepQ];
-end
-stepQ = 0.1;
-for iq0 = 6:size(q_n00,1)
-    q_n0 = [q_n0; q_n00(iq0)-stepQ; q_n00(iq0); q_n00(iq0)+stepQ];
-end
-[dq_simp, q_cs, p_cs] = quadratureMethod_forIntegralEqs_multipleIntervals('difficult_simpsonMarkovGildendurgExpWithCollisions', N, N_upper, q_n0, 1e-8, upper_Bound);
-
+%%%% upper-hybrid frequency range
+% upper_Bound = 30;
+% N = 40;%20;%         %%% must be even
+% N_upper = 400;  %%% must be even
+% q_n00 = sort(real(q1(1:30)));
+% q_n00 = [1.035; 1.134; q_n00(1); q_n00(3); q_n00(5); q_n00(7:end)];
+% stepQ = 0.01;
+% q_n0 = [];
+% for iq0 = 1:5
+%     q_n0 = [q_n0; q_n00(iq0)-stepQ; q_n00(iq0); q_n00(iq0)+stepQ];
+% end
+% stepQ = 0.1;
+% for iq0 = 6:size(q_n00,1)
+%     q_n0 = [q_n0; q_n00(iq0)-stepQ; q_n00(iq0); q_n00(iq0)+stepQ];
+% end
+% [dq_simp, q_cs, p_cs] = quadratureMethod_forIntegralEqs_multipleIntervals('difficult_simpsonMarkovGildendurgExpWithCollisions', N, N_upper, q_n0, 1e-8, upper_Bound);
 
 
 
@@ -89,7 +88,7 @@ end
 % [dq_simp, q_cs, p_cs] = quadratureMethod_forIntegralEqs('simpson', N, 1i, 1e-8, upper_Bound);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% %%%% test psy %%%
+%%%% test psy %%%
 % psi = psi1_q__gyrotropic(k_0, k_0, a_0, EE1, GG1, HH1, m, p_cs, q_cs);
 % psi2 = psi2_q__gyrotropic(k_0, k_0, a_0, EE1, GG1, HH1, m, p_cs, q_cs);
 % figure(112);
@@ -178,14 +177,13 @@ k_0 = sourceParameters.k_0;
 %L = sourceParameters.zCoordinate;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 lambda_0 = 2 * pi / k_0;
-L_0 = 4.1*a_0; L_MID = 0.1*lambda_0; L_END = 0.5*lambda_0;
-NL1 = 500; % % требуется как минимум 1120 точек на одну длину волны
-NL2 = 500;
+L_0 = 1.01*d; L_MID = 1.05*d; L_END = 1.1*d;
+NL1 = 50; % % требуется как минимум 1120 точек на одну длину волны для w=w0.025w_H
+NL2 = 35;
 LL1 = L_0:(L_MID - L_0)/NL1:L_MID;
 LL2 = L_MID:(L_END - L_MID)/NL2:L_END;
-% LL = [LL1 LL2];
-LL = 4*d;%0.5*lambda_0;%[0.2 0.5 1.5]*lambda_0;
-LL = 4 * d;
+LL = [LL1 LL2];
+LL = 2*lambda_0;%[0.2 0.5 1.5]*lambda_0;%10*d;%
 P_mod_back = zeros(size(LL,2),1);
 P_cs_back  = zeros(size(LL,2),1);
 P_cs_forw  = zeros(size(LL,2),1);
@@ -222,19 +220,19 @@ discreteSperctrumCharacters.a_smn_forw = a_smn_forw;
           scatteringCoeffs_of_EigenWavesOfHalfInfinityGyrotropCylEdge(typeOfCylinder,...
                continuousSperctrumCharacters, discreteSperctrumCharacters,waveguideParameters, sourceParameters);
 
-                      
-figure(113)
-hold on;
-     plot(q_cs,abs(b_p_field_1_back));
-     plot(real(q1),0*q1, 'o');
-     plot(real(q2),0*q2, '*');
-hold off;
-figure(114)
-hold on;
-     plot(q_cs,abs(b_p_field_2_back));
-     plot(real(q1),0*q1, 'o');
-     plot(real(q2),0*q2, '*');
-hold off;
+                     
+% figure(113)
+% hold on;
+%      plot(q_cs,abs(b_p_field_1_back));
+%      plot(real(q1),0*q1, 'o');
+%      plot(real(q2),0*q2, '*');
+% hold off;
+% figure(114)
+% hold on;
+%      plot(q_cs,abs(b_p_field_2_back));
+%      plot(real(q1),0*q1, 'o');
+%      plot(real(q2),0*q2, '*');
+% hold off;
 
 
 %%%%%%%% CALCULATING OF PARTIAL POWERS %%%%%%%%%%% added by Oleg
@@ -259,38 +257,49 @@ a_p_Hbeam_forw_prop = [a_p_Hbeam_forw(~interalQ) 0*a_p_Hbeam_forw(interalQ)];
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%% in negative direction of z-axis%%%%%%%%%%
-P_n_minus = zeros(size(q_n,1),1);
+P_n_minus = zeros(size(q_n,1),1);%(7:end)
 for in = 1:size(q_n,1)
-%     P_n_minus(in) = P_of_discreteMode(typeOfCylinder, q_n(in), - p_n(in), k_0, a_0, ...
-%                                                 EE1, GG1, HH1, MU1, EE, MU, m, a_smn_back(in).*exp(1i * k_0 * p_n(in) * abs(L)) + b_n_back(in));
 
-      P_n_minus(in) = P_of_discreteMode_NEW( - p_n(in), waveguideParameters, sourceParameters,...
-          a_smn_back(in).*exp(1i * k_0 *  p_n(in) * abs(L)) + b_n_back(in));
+%       P_n_minus(in) = P_of_discreteMode_NEW( - p_n(in+6), waveguideParameters, sourceParameters,...
+%           a_smn_back(in+6).*exp(1i * k_0 *  p_n(in+6) * abs(L)) + b_n_back(in+6));
     
+      P_n_minus(in) = P_of_discreteMode_NEW( - p_n(in), waveguideParameters, sourceParameters,...
+          b_n_back(in));
 end
 
-P_mod_back(il) = - sum(P_n_minus);
+P_mod_back(il) = - sum(P_n_minus)
 
 Phase_exp_cs = exp(1i * k_0 * p_cs * abs(L));
 %Phase_exp_cs_beta = exp(1i * k_0 * p_cs * abs(L - d));
 Phase_exp_cs(interalQ) = 0;
 %Phase_exp_cs_beta(interalQ) = 0;
+% pp = @(q) sqrt(1 - q.^2); %integral %quadgk
+% P_cs_minus_1 = ...
+%       quadgk(@(q)P_of_continuousWaves_alpha1(typeOfCylinder, q, p_0, - pp(q), k_0, a_0, ...
+%                                  EE1, GG1, HH1, MU1, EE, MU, c, m, z, j_f, j_z, d,...
+%                                  a_cs_alfa1_back_prop.* Phase_exp_cs  + b_p_field_1_back_prop),0,1);
+% P_cs_minus_2 = ...
+%       quadgk(@(q)P_of_continuousWaves_alpha2(typeOfCylinder, q, p_0, - pp(q), k_0, a_0, ...
+%                                  EE1, GG1, HH1, MU1, EE, MU, c, m, z, j_f, j_z, d,...
+%                                  a_cs_alfa2_back_prop.* Phase_exp_cs + b_p_field_2_back_prop),0,1);
 % P_cs_minus_1 = ...
 %       sum(dq_simp.*P_of_continuousWaves_alpha1(typeOfCylinder, q_cs, p_0, - p_cs, k_0, a_0, ...
-%                                  EE1, GG1, HH1, MU1, EE, MU, c, m, z, j_f, j_z, d, a_cs_alfa1_back_prop.* Phase_exp_cs  + b_p_field_1_back_prop));
+%                                  EE1, GG1, HH1, MU1, EE, MU, c, m, z, j_f, j_z, d,...
+%                                  a_cs_alfa1_back_prop.* Phase_exp_cs  + b_p_field_1_back_prop));
 % P_cs_minus_2 = ...
 %       sum(dq_simp.*P_of_continuousWaves_alpha2(typeOfCylinder, q_cs, p_0, - p_cs, k_0, a_0, ...
-%                                  EE1, GG1, HH1, MU1, EE, MU, c, m, z, j_f, j_z, d, a_cs_alfa2_back_prop.* Phase_exp_cs + b_p_field_2_back_prop));
+%                                  EE1, GG1, HH1, MU1, EE, MU, c, m, z, j_f, j_z, d,...
+%                                  a_cs_alfa2_back_prop.* Phase_exp_cs + b_p_field_2_back_prop));
+                             
 P_cs_minus_1 = ...
       sum(dq_simp.*P_of_continuousWaves_alpha1(typeOfCylinder, q_cs, p_0, - p_cs, k_0, a_0, ...
-                                 EE1, GG1, HH1, MU1, EE, MU, c, m, z, j_f, j_z, d,...
-                                 a_cs_alfa1_back_prop.* Phase_exp_cs  + b_p_field_1_back_prop));
+                                 EE1, GG1, HH1, MU1, EE, MU, c, m, z, j_f, j_z, d, b_p_field_1_back_prop));
 P_cs_minus_2 = ...
       sum(dq_simp.*P_of_continuousWaves_alpha2(typeOfCylinder, q_cs, p_0, - p_cs, k_0, a_0, ...
-                                 EE1, GG1, HH1, MU1, EE, MU, c, m, z, j_f, j_z, d,...
-                                 a_cs_alfa2_back_prop.* Phase_exp_cs + b_p_field_2_back_prop));
+                                 EE1, GG1, HH1, MU1, EE, MU, c, m, z, j_f, j_z, d, b_p_field_2_back_prop));
 
-P_cs_back(il) = - P_cs_minus_1 - P_cs_minus_2;
+
+P_cs_back(il) = - P_cs_minus_1 - P_cs_minus_2
 
 %%%%%%%% in half-space z>0%%%%%%%%%%
 
@@ -309,9 +318,7 @@ P_p2 = @(q, p) 1/4. * c * p./ (k_0.^2 * q);
 P_cs_plus_1 = sum(dq_simp.*abs(a_p_Ebeam_forw_prop).^2.*P_p1(q_cs, p_cs));
 P_cs_plus_2 = sum(dq_simp.*abs(a_p_Hbeam_forw_prop).^2.*P_p2(q_cs, p_cs));
                              
-P_cs_forw(il) = P_cs_plus_1 + P_cs_plus_2;   
-
-P_ratio = P_mod_back/(P_cs_back + P_cs_forw);
+P_cs_forw(il) = P_cs_plus_1 + P_cs_plus_2  
 
 % figure(10)
 % bar(real(p_n), - P_n_minus);
@@ -323,7 +330,7 @@ end
 P_n_minus_waveguide = zeros(size(q_n,1),1);
 P_n_plus_waveguide = zeros(size(q_n,1),1);
 % sourceParameters.zCoordinate = 0;
-for in = 1:size(q_n,1)
+for in = 1:size(q_n,1)%(7:end)
 %     P_n_minus_waveguide(in) = P_of_discreteMode_NEW(typeOfCylinder, q_n(in), - p_n(in), k_0, a_0, ...
 %                                                 EE1, GG1, HH1, MU1, EE, MU, m, a_smn_back(in));
 %     
@@ -338,48 +345,49 @@ end
 P_mod_back_waveguide = - sum(P_n_minus_waveguide);
 P_mod_forw_waveguide =   sum(P_n_plus_waveguide);
 P_mod_waveguide = P_mod_back_waveguide + P_mod_forw_waveguide;
-% bar(-p_n,P_n_plus_waveguide-P_n_minus_waveguide);
+% bar(-p_n(7:end),P_n_plus_waveguide-P_n_minus_waveguide);
 
-P_cs_minus_1_waveguide = ...
-      sum(dq_simp.*P_of_continuousWaves_alpha1(typeOfCylinder, q_cs, p_0, - p_cs, k_0, a_0, ...
-                                 EE1, GG1, HH1, MU1, EE, MU, c, m, z, j_f, j_z, d, a_cs_alfa1_back_prop));
-P_cs_minus_2_waveguide = ...
-      sum(dq_simp.*P_of_continuousWaves_alpha2(typeOfCylinder, q_cs, p_0, - p_cs, k_0, a_0, ...
-                                 EE1, GG1, HH1, MU1, EE, MU, c, m, z, j_f, j_z, d, a_cs_alfa2_back_prop));
-P_cs_plus_1_waveguide = ...
-      sum(dq_simp.*P_of_continuousWaves_alpha1(typeOfCylinder, q_cs, p_0, p_cs, k_0, a_0, ...
-                                 EE1, GG1, HH1, MU1, EE, MU, c, m, z, j_f, j_z, d, a_cs_alfa1_forw_prop));   
-P_cs_plus_2_waveguide = ...
-      sum(dq_simp.*P_of_continuousWaves_alpha2(typeOfCylinder, q_cs, p_0, p_cs, k_0, a_0, ...
-                                 EE1, GG1, HH1, MU1, EE, MU, c, m, z, j_f, j_z, d, a_cs_alfa2_forw_prop));                             
+% P_cs_minus_1_waveguide = ...
+%       sum(dq_simp.*P_of_continuousWaves_alpha1(typeOfCylinder, q_cs, p_0, - p_cs, k_0, a_0, ...
+%                                  EE1, GG1, HH1, MU1, EE, MU, c, m, z, j_f, j_z, d, a_cs_alfa1_back_prop));
+% P_cs_minus_2_waveguide = ...
+%       sum(dq_simp.*P_of_continuousWaves_alpha2(typeOfCylinder, q_cs, p_0, - p_cs, k_0, a_0, ...
+%                                  EE1, GG1, HH1, MU1, EE, MU, c, m, z, j_f, j_z, d, a_cs_alfa2_back_prop));
+% P_cs_plus_1_waveguide = ...
+%       sum(dq_simp.*P_of_continuousWaves_alpha1(typeOfCylinder, q_cs, p_0, p_cs, k_0, a_0, ...
+%                                  EE1, GG1, HH1, MU1, EE, MU, c, m, z, j_f, j_z, d, a_cs_alfa1_forw_prop));   
+% P_cs_plus_2_waveguide = ...
+%       sum(dq_simp.*P_of_continuousWaves_alpha2(typeOfCylinder, q_cs, p_0, p_cs, k_0, a_0, ...
+%                                  EE1, GG1, HH1, MU1, EE, MU, c, m, z, j_f, j_z, d, a_cs_alfa2_forw_prop));                             
 
-% pp = @(q) sqrt(1 - q.^2);
-% P_cs_minus_1_waveguide = quadgk(@(q)P_of_continuousWaves_alpha1(typeOfCylinder, q, p_0, - pp(q), k_0, a_0, ...
-%                                  EE1, GG1, HH1, MU1, EE, MU, c, m, z, j_f, j_z, d, ...
-%                                  a_sma_of_continuousWaves_alpha1_Decorator(typeOfCylinder, q,  - pp(q), waveguideParameters, sourceParameters)),0,1);
-%                              
-% P_cs_minus_2_waveguide = quadgk(@(q)P_of_continuousWaves_alpha2(typeOfCylinder, q, p_0, - pp(q), k_0, a_0, ...
-%                                  EE1, GG1, HH1, MU1, EE, MU, c, m, z, j_f, j_z, d, ...
-%                                  a_sma_of_continuousWaves_alpha2_Decorator(typeOfCylinder, q,  - pp(q), waveguideParameters, sourceParameters)),0,1);
-%                              
-% P_cs_plus_1_waveguide = quadgk(@(q)P_of_continuousWaves_alpha1(typeOfCylinder, q, p_0, pp(q), k_0, a_0, ...
-%                                  EE1, GG1, HH1, MU1, EE, MU, c, m, z, j_f, j_z, d, ...
-%                                  a_sma_of_continuousWaves_alpha1_Decorator(typeOfCylinder, q,  pp(q), waveguideParameters, sourceParameters)),0,1);                             
-%                             
-% P_cs_plus_2_waveguide = quadgk(@(q)P_of_continuousWaves_alpha2(typeOfCylinder, q, p_0, pp(q), k_0, a_0, ...
-%                                  EE1, GG1, HH1, MU1, EE, MU, c, m, z, j_f, j_z, d, ...
-%                                  a_sma_of_continuousWaves_alpha2_Decorator(typeOfCylinder, q,  pp(q), waveguideParameters, sourceParameters)),0,1);
+pp = @(q) sqrt(1 - q.^2); %integral %quadgk
+P_cs_minus_1_waveguide = integral(@(q)P_of_continuousWaves_alpha1(typeOfCylinder, q, p_0, - pp(q), k_0, a_0, ...
+                                 EE1, GG1, HH1, MU1, EE, MU, c, m, z, j_f, j_z, d, ...
+                                 a_sma_of_continuousWaves_alpha1_Decorator(typeOfCylinder, q,  - pp(q), waveguideParameters, sourceParameters)),0,1);
+                             
+P_cs_minus_2_waveguide = integral(@(q)P_of_continuousWaves_alpha2(typeOfCylinder, q, p_0, - pp(q), k_0, a_0, ...
+                                 EE1, GG1, HH1, MU1, EE, MU, c, m, z, j_f, j_z, d, ...
+                                 a_sma_of_continuousWaves_alpha2_Decorator(typeOfCylinder, q,  - pp(q), waveguideParameters, sourceParameters)),0,1);
+                             
+P_cs_plus_1_waveguide = integral(@(q)P_of_continuousWaves_alpha1(typeOfCylinder, q, p_0, pp(q), k_0, a_0, ...
+                                 EE1, GG1, HH1, MU1, EE, MU, c, m, z, j_f, j_z, d, ...
+                                 a_sma_of_continuousWaves_alpha1_Decorator(typeOfCylinder, q,  pp(q), waveguideParameters, sourceParameters)),0,1);                             
+                            
+P_cs_plus_2_waveguide = integral(@(q)P_of_continuousWaves_alpha2(typeOfCylinder, q, p_0, pp(q), k_0, a_0, ...
+                                 EE1, GG1, HH1, MU1, EE, MU, c, m, z, j_f, j_z, d, ...
+                                 a_sma_of_continuousWaves_alpha2_Decorator(typeOfCylinder, q,  pp(q), waveguideParameters, sourceParameters)),0,1);
                               
 P_cs_back_waveguide = - P_cs_minus_1_waveguide - P_cs_minus_2_waveguide;
-P_cs_forw_waveguide =   P_cs_plus_1_waveguide + P_cs_plus_2_waveguide;
+P_cs_forw_waveguide =   P_cs_plus_1_waveguide + P_cs_plus_2_waveguide
 
 P_cs_waveguide = P_cs_back_waveguide + P_cs_forw_waveguide;
-R_cs_waveguide = P_cs_waveguide*2 / I_0^2 * toOhms
+R_cs_waveguide = P_cs_waveguide*2 / I_0^2 * toOhms;
 
-R_mod_waveguide = P_mod_waveguide*2 / I_0^2 * toOhms
+R_mod_waveguide = P_mod_waveguide*2 / I_0^2 * toOhms;
 
-P_sum_waveguide = R_mod_waveguide + P_cs_waveguide;
+P_sum_waveguide = P_mod_waveguide + P_cs_waveguide;
 
+P_ratio = (P_cs_forw_waveguide + P_mod_forw_waveguide)/(P_cs_back + P_cs_forw + P_mod_back) % проверка сохранения энергии при дифракции
 %% calculation of the power radiated by the source located in free space
 delta = 0;
 pp = @(q) sqrt(1 - q.^2);
@@ -406,8 +414,8 @@ R_free_space = P_free_space*2 / I_0^2 * toOhms;
 %P_sum_waveguide = 32.9754;
 figure(7)
 plot(LL/lambda_0, P_mod_back/P_sum_waveguide, 'r'); hold on
-plot(LL/lambda_0, 10*P_cs_back/P_sum_waveguide, 'b'); hold on
-plot(LL/lambda_0, 10*P_cs_forw/P_sum_waveguide, 'k'); hold on
+plot(LL/lambda_0, P_cs_back/P_sum_waveguide, 'b'); hold on
+plot(LL/lambda_0, P_cs_forw/P_sum_waveguide, 'k'); hold on
 
 %P_Ratio = P_mod_back/(P_cs_back + P_cs_forw)
 
@@ -577,4 +585,10 @@ hold off
 
 toc
   
-  
+%сохраняем некоторые переменные в файл
+% save('X:\Dropbox\PAPERS\URSI GASS 2020\coefficients_0025wH_n1e13_L_lambda0.mat',...
+%     'a_cs_alfa1_back_prop', 'a_cs_alfa2_back_prop', 'b_p_field_1_back_prop', 'b_p_field_2_back_prop',...
+%     'a_p_Ebeam_forw_prop', 'a_p_Hbeam_forw_prop', 'q_cs', 'p_cs', 'LL');
+
+
+
