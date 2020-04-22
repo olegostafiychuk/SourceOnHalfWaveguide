@@ -1,5 +1,5 @@
 clearvars
-% clc
+clc
 
 tic
 systemParameters
@@ -50,36 +50,36 @@ N = 1600;
 %%%%%% NEW INTEGRATION METHOD %%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%% low-hybrid frequency range
-N = 160;       %%% must be even
-N_upper = 400; %%% must be even
-upper_Bound = 32000;
-q_n0 = [2; 20; 800; 16000];
-
-
-%%%%% upper-hybrid frequency range
-% N = 100;       %%% must be even
-% N_upper = 400; %%% must be even
-% upper_Bound = 41;
-% q_n0 = [2; 4];
-
-[dq_simp, q_cs, p_cs] = quadratureMethod_forIntegralEqs_multipleIntervals('difficult_simpsonMarkovGildendurgExpWithCollisions', N, N_upper, q_n0, 1e-8, upper_Bound);
+% N = 160;       %%% must be even
+% N_upper = 800; %%% must be even
+% upper_Bound = 32000;
+% q_n0 = [2; 20; 800; 16000];
+% 
+% 
+% %%%%% upper-hybrid frequency range
+% % N = 100;       %%% must be even
+% % N_upper = 400; %%% must be even
+% % upper_Bound = 41;
+% % q_n0 = [2; 4];
+% 
+% [dq_simp, q_cs, p_cs] = quadratureMethod_forIntegralEqs_multipleIntervals('difficult_simpsonMarkovGildendurgExpWithCollisions', N, N_upper, q_n0, 1e-8, upper_Bound);
 
 %%%% upper-hybrid frequency range
-% upper_Bound = 30;
-% N = 40;%20;%         %%% must be even
-% N_upper = 400;  %%% must be even
-% q_n00 = sort(real(q1(1:30)));
-% q_n00 = [1.035; 1.134; q_n00(1); q_n00(3); q_n00(5); q_n00(7:end)];
-% stepQ = 0.01;
-% q_n0 = [];
-% for iq0 = 1:5
-%     q_n0 = [q_n0; q_n00(iq0)-stepQ; q_n00(iq0); q_n00(iq0)+stepQ];
-% end
-% stepQ = 0.1;
-% for iq0 = 6:size(q_n00,1)
-%     q_n0 = [q_n0; q_n00(iq0)-stepQ; q_n00(iq0); q_n00(iq0)+stepQ];
-% end
-% [dq_simp, q_cs, p_cs] = quadratureMethod_forIntegralEqs_multipleIntervals('difficult_simpsonMarkovGildendurgExpWithCollisions', N, N_upper, q_n0, 1e-8, upper_Bound);
+upper_Bound = 30;
+N = 40;%20;%         %%% must be even
+N_upper = 400;  %%% must be even
+q_n00 = sort(real(q1(1:30)));
+q_n00 = [1.035; 1.134; q_n00(1); q_n00(3); q_n00(5); q_n00(7:end)];
+stepQ = 0.01;
+q_n0 = [];
+for iq0 = 1:5
+    q_n0 = [q_n0; q_n00(iq0)-stepQ; q_n00(iq0); q_n00(iq0)+stepQ];
+end
+stepQ = 0.1;
+for iq0 = 6:size(q_n00,1)
+    q_n0 = [q_n0; q_n00(iq0)-stepQ; q_n00(iq0); q_n00(iq0)+stepQ];
+end
+[dq_simp, q_cs, p_cs] = quadratureMethod_forIntegralEqs_multipleIntervals('difficult_simpsonMarkovGildendurgExpWithCollisions', N, N_upper, q_n0, 1e-8, upper_Bound);
 
 
 
@@ -113,6 +113,15 @@ for iq = 1:size(q_cs,2)
     a_cs_alfa2_forw(iq) = a_sma_of_continuousWaves_alpha2_Decorator(typeOfCylinder, q_cs(iq),  p_cs(iq), waveguideParameters, sourceParameters);
     a_cs_alfa2_back(iq) = a_sma_of_continuousWaves_alpha2_Decorator(typeOfCylinder, q_cs(iq), -p_cs(iq), waveguideParameters, sourceParameters);
 end
+
+% ind = find(q_cs < 0.99);
+% ind = ind(end);
+% a_cs_alfa1_forw = a_cs_alfa1_forw(1:ind);
+% a_cs_alfa2_forw = a_cs_alfa2_forw(1:ind);
+% a_cs_alfa1_back = a_cs_alfa1_back(1:ind);
+% a_cs_alfa2_back = a_cs_alfa2_back(1:ind);
+% q = q_cs(1:ind);
+% plot(q, a_cs_alfa2_back);
 
 coeffsOfField = coeffsOfField_of_Continues_discreteRepr(typeOfCylinder, q_cs, p_cs, waveguideParameters, sourceParameters);
 
@@ -183,7 +192,7 @@ NL2 = 35;
 LL1 = L_0:(L_MID - L_0)/NL1:L_MID;
 LL2 = L_MID:(L_END - L_MID)/NL2:L_END;
 LL = [LL1 LL2];
-LL = 2*lambda_0;%[0.2 0.5 1.5]*lambda_0;%10*d;%
+LL = 4*d;% lambda_0;%[0.2 0.5 1.5]*lambda_0;%
 P_mod_back = zeros(size(LL,2),1);
 P_cs_back  = zeros(size(LL,2),1);
 P_cs_forw  = zeros(size(LL,2),1);
@@ -585,10 +594,18 @@ hold off
 
 toc
   
-%сохраняем некоторые переменные в файл
-% save('X:\Dropbox\PAPERS\URSI GASS 2020\coefficients_0025wH_n1e13_L_lambda0.mat',...
+% %for work_station
+%coefficients_0995wUH_n3e12_L_4d
+%coefficients_0025wH_n1e13_L_lambda0
+save('X:\Dropbox\PAPERS\URSI GASS 2020\coefficients_0995wUH_n3e12_L_4d.mat',...
+    'a_cs_alfa1_back_prop', 'a_cs_alfa2_back_prop', 'b_p_field_1_back_prop', 'b_p_field_2_back_prop',...
+    'a_p_Ebeam_forw_prop', 'a_p_Hbeam_forw_prop', 'q_cs', 'p_cs', 'LL',...
+    'P_mod_back', 'P_cs_back', 'P_cs_forw', 'P_cs_forw_waveguide');
+% 
+% %for home station
+% save('C:\Users\Олег\Dropbox\PAPERS\URSI GASS 2020\coefficients_0025wH_n1e13_L_lambda0.mat',...
 %     'a_cs_alfa1_back_prop', 'a_cs_alfa2_back_prop', 'b_p_field_1_back_prop', 'b_p_field_2_back_prop',...
-%     'a_p_Ebeam_forw_prop', 'a_p_Hbeam_forw_prop', 'q_cs', 'p_cs', 'LL');
+%     'a_p_Ebeam_forw_prop', 'a_p_Hbeam_forw_prop', 'q_cs', 'p_cs', 'LL', 'P_mod_back', 'P_cs_back', 'P_cs_forw', 'P_cs_forw_waveguide');
 
 
 
