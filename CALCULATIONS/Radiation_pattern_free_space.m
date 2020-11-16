@@ -41,7 +41,7 @@ D1 = [D_plus zeros(1,size(teta2,2))];
 D2 = [zeros(1,size(teta1,2)) D_minus];
 D = (D1 +D2)/D_max;
 figure(31)
-plot(teta/pi, D); hold on;
+plot(teta/pi, D,'k'); hold on;
 xlabel('teta (\pi rad)'); ylabel('S_r/max(|S_r|)');
 
 % Построение в полярных координатах
@@ -51,8 +51,8 @@ D2 = [zeros(1,size(teta1,2)) D_minus];
 D = (D1 +D2)/D_max;
 %D = [D_plus D_minus];
 figure(32)
-polar(teta, D); hold on;
-polar(-teta, D);
+polar(teta, D, 'k'); hold on;
+polar(-teta, D, 'k');
 
 % figure
 % plot(teta/pi,D)

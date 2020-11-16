@@ -10,7 +10,7 @@ systemParameters
 % GG1 = 0.000001;
 % HH1 =  1.00001;
 
-step = 1/1000;
+step = 1/5000;
 teta1 = (0.0001:step:0.49999)*pi;
 teta2 = (0.50001:step:0.9999)*pi;
 %teta2 = teta1;
@@ -76,7 +76,7 @@ end
 D_plus = c/(2*pi*k_0^2).*(cot(teta1)).^2.*P_plus_sum; % (пока только для
 %положительного направления оси z) %
 D_minus = c/(2*pi*k_0^2).*(cot(teta2)).^2.*P_minus_sum; % для отрицательного направления оси z
-D_max = 1;%max(max(abs(D_plus)),max(abs(D_minus)));
+D_max = max(max(abs(D_plus)),max(abs(D_minus)));
 
 % figure(1)
 % %subplot(1,2,1)
@@ -91,7 +91,7 @@ D1 = [D_plus zeros(1,size(teta2,2))];
 D2 = [zeros(1,size(teta1,2)) D_minus];
 D = (D1 + D2)/D_max;
 figure(1)
-plot(teta/pi, real(D), 'r'); hold on;
+plot(teta/pi, real(D), 'k'); hold on;
 
 % figure(8)
 % plot(teta1, D_plus./D_max); hold on

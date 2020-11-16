@@ -27,14 +27,13 @@ m = 1;
 
 eps = 1;
 y0  = 0;
-x0  = 1;
+x0  = 1.5;
 xmin =  x0 - eps;
-xmax =  x0 + eps;
+xmax =  x0 + eps + 3;
 ymin =  y0 - eps;
 ymax =  y0 + eps;
-Npntx = 100;
-Npnty = 100;
-
+Npntx = 600;
+Npnty = 200;
 
 systemParameters
 
@@ -54,7 +53,7 @@ R   = k_0 * a_0;
   
     
 
-[ff1, fval] = fminsearch(@(x) dispeq_gyrotropic_cylinder(x(1) + 1i * x(2), m, EE, GG, HH, k_0, a_0), [0.366 0], optimset('TolX',1e-8))
+[ff1, fval] = fminsearch(@(x) dispeq_gyrotropic_cylinder(x(1) + 1i * x(2), m, EE, GG, HH, k_0, a_0), [1.37 0], optimset('TolX',1e-8))
 %fval
 
 [px,py] = meshgrid(xmin : (xmax - xmin) / Npntx :xmax, ymin : (ymax - ymin) / Npnty :ymax);
@@ -96,17 +95,18 @@ view(30,30)
 %%%%% search of mode constant
 %%% the search of transverse constant of surface modes
 p_min = 1;
-p_Max = 2;
+p_Max = 40;
     p = [p_min:0.1:p_Max];
     p_n = zeros(size(p,2),2);
     p_n_pred = zeros(size(p,2),1);
     fval = zeros(size(p,2),1);
-    delta = 0.1;%1.5;
+    delta = 0.5;%1.5;%
 for in = 1:size(p,2)
 %     [p_n(in,:), fval(in)] = fminsearch(@(x) dispeq_gyrotropic_cylinder(x(1) + 1i * x(2), m, EE, GG, HH, k_0, a_0),...
 %                 [p(in),0], optimset('TolX',1e-8));
+
     [p_n(in,:), fval(in)] = fminbnd(@(x) dispeq_gyrotropic_cylinder(x, m, EE, GG, HH, k_0, a_0),...
-                p(in) - delta, p(in) + delta, optimset('TolX',1e-8));
+                p(in) - delta, p(in) + delta, optimset('TolX',1e-12));
             
 %     [p_n(in,:), fval(in)] = fminsearch(@(x) dispeq_gyrotropic_cylinder(x(1) + 1i * x(2), m, EE, GG, HH, k_0, a_0),...
 %                p_n(in,:), optimset('TolX',1e-8));
